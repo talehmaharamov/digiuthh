@@ -1,0 +1,962 @@
+-- phpMyAdmin SQL Dump
+-- version 4.9.5deb2
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:3306
+-- Generation Time: Mar 21, 2022 at 05:58 AM
+-- Server version: 8.0.28-0ubuntu0.20.04.3
+-- PHP Version: 8.1.3
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `bcp_back`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `aboutpages`
+--
+
+CREATE TABLE `aboutpages` (
+  `id` bigint UNSIGNED NOT NULL,
+  `desc` json DEFAULT NULL,
+  `content` json DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image_alt` json DEFAULT NULL,
+  `image_title` json DEFAULT NULL,
+  `showreel` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `showreel_text` json DEFAULT NULL,
+  `meta_title` json DEFAULT NULL,
+  `meta_keywords` json DEFAULT NULL,
+  `meta_description` json DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `aboutpages`
+--
+
+INSERT INTO `aboutpages` (`id`, `desc`, `content`, `image`, `image_alt`, `image_title`, `showreel`, `showreel_text`, `meta_title`, `meta_keywords`, `meta_description`, `created_at`, `updated_at`) VALUES
+(1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-03-20 21:52:34', '2022-03-20 21:52:34');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `action_events`
+--
+
+CREATE TABLE `action_events` (
+  `id` bigint UNSIGNED NOT NULL,
+  `batch_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `actionable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `actionable_id` bigint UNSIGNED NOT NULL,
+  `target_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `target_id` bigint UNSIGNED NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_id` bigint UNSIGNED DEFAULT NULL,
+  `fields` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'running',
+  `exception` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `original` mediumtext COLLATE utf8mb4_unicode_ci,
+  `changes` mediumtext COLLATE utf8mb4_unicode_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blogpages`
+--
+
+CREATE TABLE `blogpages` (
+  `id` bigint UNSIGNED NOT NULL,
+  `meta_title` json DEFAULT NULL,
+  `meta_keywords` json DEFAULT NULL,
+  `meta_description` json DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `blogpages`
+--
+
+INSERT INTO `blogpages` (`id`, `meta_title`, `meta_keywords`, `meta_description`, `created_at`, `updated_at`) VALUES
+(1, NULL, NULL, NULL, '2022-03-20 21:52:34', '2022-03-20 21:52:34');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blogs`
+--
+
+CREATE TABLE `blogs` (
+  `id` bigint UNSIGNED NOT NULL,
+  `blog_category_id` bigint UNSIGNED NOT NULL,
+  `slug` json DEFAULT NULL,
+  `title` json DEFAULT NULL,
+  `cover` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cover_alt` json DEFAULT NULL,
+  `cover_title` json DEFAULT NULL,
+  `content` json NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `view_count` int NOT NULL DEFAULT '0',
+  `meta_title` json DEFAULT NULL,
+  `meta_keywords` json DEFAULT NULL,
+  `meta_description` json DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blog_categories`
+--
+
+CREATE TABLE `blog_categories` (
+  `id` bigint UNSIGNED NOT NULL,
+  `slug` json DEFAULT NULL,
+  `blog_category_id` bigint UNSIGNED DEFAULT NULL,
+  `title` json DEFAULT NULL,
+  `meta_title` json DEFAULT NULL,
+  `meta_keywords` json DEFAULT NULL,
+  `meta_description` json DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blog_comments`
+--
+
+CREATE TABLE `blog_comments` (
+  `id` bigint UNSIGNED NOT NULL,
+  `blog_id` bigint UNSIGNED NOT NULL,
+  `blog_comment_id` bigint UNSIGNED DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `surname` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `message` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contactpages`
+--
+
+CREATE TABLE `contactpages` (
+  `id` bigint UNSIGNED NOT NULL,
+  `meta_title` json DEFAULT NULL,
+  `meta_keywords` json DEFAULT NULL,
+  `meta_description` json DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `contactpages`
+--
+
+INSERT INTO `contactpages` (`id`, `meta_title`, `meta_keywords`, `meta_description`, `created_at`, `updated_at`) VALUES
+(1, NULL, NULL, NULL, '2022-03-20 21:52:34', '2022-03-20 21:52:34');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `failed_jobs`
+--
+
+CREATE TABLE `failed_jobs` (
+  `id` bigint UNSIGNED NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `homepages`
+--
+
+CREATE TABLE `homepages` (
+  `id` bigint UNSIGNED NOT NULL,
+  `slogan` json DEFAULT NULL,
+  `desc` json DEFAULT NULL,
+  `meta_title` json DEFAULT NULL,
+  `meta_keywords` json DEFAULT NULL,
+  `meta_description` json DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `homepages`
+--
+
+INSERT INTO `homepages` (`id`, `slogan`, `desc`, `meta_title`, `meta_keywords`, `meta_description`, `created_at`, `updated_at`) VALUES
+(1, NULL, NULL, NULL, NULL, NULL, '2022-03-20 21:52:34', '2022-03-20 21:52:34');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `homepage_blogs`
+--
+
+CREATE TABLE `homepage_blogs` (
+  `id` bigint UNSIGNED NOT NULL,
+  `blog_id` bigint UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `homepage_brain_services`
+--
+
+CREATE TABLE `homepage_brain_services` (
+  `id` bigint UNSIGNED NOT NULL,
+  `service_id` bigint UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `homepage_portfolios`
+--
+
+CREATE TABLE `homepage_portfolios` (
+  `id` bigint UNSIGNED NOT NULL,
+  `portfolio_id` bigint UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `homepage_projects`
+--
+
+CREATE TABLE `homepage_projects` (
+  `id` bigint UNSIGNED NOT NULL,
+  `project_id` bigint UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `homepage_services`
+--
+
+CREATE TABLE `homepage_services` (
+  `id` bigint UNSIGNED NOT NULL,
+  `service_id` bigint UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2014_10_12_100000_create_password_resets_table', 1),
+(3, '2018_01_01_000000_create_action_events_table', 1),
+(4, '2019_05_10_000000_add_fields_to_action_events_table', 1),
+(5, '2019_08_19_000000_create_failed_jobs_table', 1),
+(6, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(7, '2022_03_19_215350_create_services_table', 1),
+(8, '2022_03_19_221526_create_portfolios_table', 1),
+(9, '2022_03_19_222625_create_portfolio_images_table', 1),
+(10, '2022_03_19_224013_create_projects_table', 1),
+(11, '2022_03_19_224838_create_blog_categories_table', 1),
+(12, '2022_03_19_225455_create_blogs_table', 1),
+(13, '2022_03_19_230450_create_blog_comments_table', 1),
+(14, '2022_03_20_112223_create_homepages_table', 1),
+(15, '2022_03_20_112542_create_homepage_portfolios_table', 1),
+(16, '2022_03_20_112625_create_homepage_services_table', 1),
+(17, '2022_03_20_112719_create_homepage_projects_table', 1),
+(18, '2022_03_20_112751_create_homepage_blogs_table', 1),
+(19, '2022_03_20_203429_create_homepage_brain_services_table', 1),
+(20, '2022_03_20_220702_create_contactpages_table', 1),
+(21, '2022_03_20_221637_create_aboutpages_table', 1),
+(22, '2022_03_20_223323_create_servicepages_table', 1),
+(23, '2022_03_20_232713_create_portfoliopages_table', 1),
+(24, '2022_03_20_233313_create_projectpages_table', 1),
+(25, '2022_03_20_235851_create_blogpages_table', 1),
+(26, '2022_03_21_013905_create_social_links_table', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `personal_access_tokens`
+--
+
+CREATE TABLE `personal_access_tokens` (
+  `id` bigint UNSIGNED NOT NULL,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `last_used_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `portfoliopages`
+--
+
+CREATE TABLE `portfoliopages` (
+  `id` bigint UNSIGNED NOT NULL,
+  `meta_title` json DEFAULT NULL,
+  `meta_keywords` json DEFAULT NULL,
+  `meta_description` json DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `portfoliopages`
+--
+
+INSERT INTO `portfoliopages` (`id`, `meta_title`, `meta_keywords`, `meta_description`, `created_at`, `updated_at`) VALUES
+(1, NULL, NULL, NULL, '2022-03-20 21:52:34', '2022-03-20 21:52:34');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `portfolios`
+--
+
+CREATE TABLE `portfolios` (
+  `id` bigint UNSIGNED NOT NULL,
+  `service_id` bigint UNSIGNED NOT NULL,
+  `finish_date` date NOT NULL,
+  `slug` json DEFAULT NULL,
+  `cover` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cover_alt` json DEFAULT NULL,
+  `cover_title` json DEFAULT NULL,
+  `title` json DEFAULT NULL,
+  `desc` json DEFAULT NULL,
+  `content` json DEFAULT NULL,
+  `meta_title` json DEFAULT NULL,
+  `meta_keywords` json DEFAULT NULL,
+  `meta_description` json DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `portfolio_images`
+--
+
+CREATE TABLE `portfolio_images` (
+  `id` bigint UNSIGNED NOT NULL,
+  `portfolio_id` bigint UNSIGNED NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` json DEFAULT NULL,
+  `alt` json DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `projectpages`
+--
+
+CREATE TABLE `projectpages` (
+  `id` bigint UNSIGNED NOT NULL,
+  `meta_title` json DEFAULT NULL,
+  `meta_keywords` json DEFAULT NULL,
+  `meta_description` json DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `projectpages`
+--
+
+INSERT INTO `projectpages` (`id`, `meta_title`, `meta_keywords`, `meta_description`, `created_at`, `updated_at`) VALUES
+(1, NULL, NULL, NULL, '2022-03-20 21:52:34', '2022-03-20 21:52:34');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `projects`
+--
+
+CREATE TABLE `projects` (
+  `id` bigint UNSIGNED NOT NULL,
+  `title` json DEFAULT NULL,
+  `desc` json DEFAULT NULL,
+  `cover` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cover_alt` json DEFAULT NULL,
+  `cover_title` json DEFAULT NULL,
+  `url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `servicepages`
+--
+
+CREATE TABLE `servicepages` (
+  `id` bigint UNSIGNED NOT NULL,
+  `meta_title` json DEFAULT NULL,
+  `meta_keywords` json DEFAULT NULL,
+  `meta_description` json DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `servicepages`
+--
+
+INSERT INTO `servicepages` (`id`, `meta_title`, `meta_keywords`, `meta_description`, `created_at`, `updated_at`) VALUES
+(1, NULL, NULL, NULL, '2022-03-20 21:52:34', '2022-03-20 21:52:34');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `services`
+--
+
+CREATE TABLE `services` (
+  `id` bigint UNSIGNED NOT NULL,
+  `slug` json DEFAULT NULL,
+  `title` json DEFAULT NULL,
+  `desc` json DEFAULT NULL,
+  `head_text` json DEFAULT NULL,
+  `mid_text` json DEFAULT NULL,
+  `foot_text` json DEFAULT NULL,
+  `cover` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `icon` enum('star','quote','sharp','round_bracket','square_bracket','curly_bracket','equal','arrows','slashes') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `meta_title` json DEFAULT NULL,
+  `meta_keywords` json DEFAULT NULL,
+  `meta_description` json DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `social_links`
+--
+
+CREATE TABLE `social_links` (
+  `id` bigint UNSIGNED NOT NULL,
+  `facebook` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `instagram` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `dribble` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `behance` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `linkedin` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `youtube` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `social_links`
+--
+
+INSERT INTO `social_links` (`id`, `facebook`, `instagram`, `dribble`, `behance`, `linkedin`, `youtube`, `created_at`, `updated_at`) VALUES
+(1, NULL, NULL, NULL, NULL, NULL, NULL, '2022-03-20 21:52:34', '2022-03-20 21:52:34');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Arianna Bins', 'admin@admin.com', '2022-03-20 21:52:34', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'sbIRWrRwxL', '2022-03-20 21:52:34', '2022-03-20 21:52:34');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `aboutpages`
+--
+ALTER TABLE `aboutpages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `action_events`
+--
+ALTER TABLE `action_events`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `action_events_actionable_type_actionable_id_index` (`actionable_type`,`actionable_id`),
+  ADD KEY `action_events_batch_id_model_type_model_id_index` (`batch_id`,`model_type`,`model_id`),
+  ADD KEY `action_events_user_id_index` (`user_id`);
+
+--
+-- Indexes for table `blogpages`
+--
+ALTER TABLE `blogpages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `blogs`
+--
+ALTER TABLE `blogs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `blogs_blog_category_id_foreign` (`blog_category_id`),
+  ADD KEY `blogs_user_id_foreign` (`user_id`);
+
+--
+-- Indexes for table `blog_categories`
+--
+ALTER TABLE `blog_categories`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `blog_categories_blog_category_id_foreign` (`blog_category_id`);
+
+--
+-- Indexes for table `blog_comments`
+--
+ALTER TABLE `blog_comments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `blog_comments_blog_id_foreign` (`blog_id`),
+  ADD KEY `blog_comments_blog_comment_id_foreign` (`blog_comment_id`);
+
+--
+-- Indexes for table `contactpages`
+--
+ALTER TABLE `contactpages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `homepages`
+--
+ALTER TABLE `homepages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `homepage_blogs`
+--
+ALTER TABLE `homepage_blogs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `homepage_blogs_blog_id_foreign` (`blog_id`);
+
+--
+-- Indexes for table `homepage_brain_services`
+--
+ALTER TABLE `homepage_brain_services`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `homepage_brain_services_service_id_foreign` (`service_id`);
+
+--
+-- Indexes for table `homepage_portfolios`
+--
+ALTER TABLE `homepage_portfolios`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `homepage_portfolios_portfolio_id_foreign` (`portfolio_id`);
+
+--
+-- Indexes for table `homepage_projects`
+--
+ALTER TABLE `homepage_projects`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `homepage_projects_project_id_foreign` (`project_id`);
+
+--
+-- Indexes for table `homepage_services`
+--
+ALTER TABLE `homepage_services`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `homepage_services_service_id_foreign` (`service_id`);
+
+--
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indexes for table `personal_access_tokens`
+--
+ALTER TABLE `personal_access_tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
+  ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
+
+--
+-- Indexes for table `portfoliopages`
+--
+ALTER TABLE `portfoliopages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `portfolios`
+--
+ALTER TABLE `portfolios`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `portfolios_service_id_foreign` (`service_id`);
+
+--
+-- Indexes for table `portfolio_images`
+--
+ALTER TABLE `portfolio_images`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `portfolio_images_portfolio_id_foreign` (`portfolio_id`);
+
+--
+-- Indexes for table `projectpages`
+--
+ALTER TABLE `projectpages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `projects`
+--
+ALTER TABLE `projects`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `servicepages`
+--
+ALTER TABLE `servicepages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `services`
+--
+ALTER TABLE `services`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `social_links`
+--
+ALTER TABLE `social_links`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `aboutpages`
+--
+ALTER TABLE `aboutpages`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `action_events`
+--
+ALTER TABLE `action_events`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `blogpages`
+--
+ALTER TABLE `blogpages`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `blogs`
+--
+ALTER TABLE `blogs`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `blog_categories`
+--
+ALTER TABLE `blog_categories`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `blog_comments`
+--
+ALTER TABLE `blog_comments`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `contactpages`
+--
+ALTER TABLE `contactpages`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `homepages`
+--
+ALTER TABLE `homepages`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `homepage_blogs`
+--
+ALTER TABLE `homepage_blogs`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `homepage_brain_services`
+--
+ALTER TABLE `homepage_brain_services`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `homepage_portfolios`
+--
+ALTER TABLE `homepage_portfolios`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `homepage_projects`
+--
+ALTER TABLE `homepage_projects`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `homepage_services`
+--
+ALTER TABLE `homepage_services`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- AUTO_INCREMENT for table `personal_access_tokens`
+--
+ALTER TABLE `personal_access_tokens`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `portfoliopages`
+--
+ALTER TABLE `portfoliopages`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `portfolios`
+--
+ALTER TABLE `portfolios`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `portfolio_images`
+--
+ALTER TABLE `portfolio_images`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `projectpages`
+--
+ALTER TABLE `projectpages`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `projects`
+--
+ALTER TABLE `projects`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `servicepages`
+--
+ALTER TABLE `servicepages`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `services`
+--
+ALTER TABLE `services`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `social_links`
+--
+ALTER TABLE `social_links`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `blogs`
+--
+ALTER TABLE `blogs`
+  ADD CONSTRAINT `blogs_blog_category_id_foreign` FOREIGN KEY (`blog_category_id`) REFERENCES `blog_categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `blogs_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `blog_categories`
+--
+ALTER TABLE `blog_categories`
+  ADD CONSTRAINT `blog_categories_blog_category_id_foreign` FOREIGN KEY (`blog_category_id`) REFERENCES `blog_categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `blog_comments`
+--
+ALTER TABLE `blog_comments`
+  ADD CONSTRAINT `blog_comments_blog_comment_id_foreign` FOREIGN KEY (`blog_comment_id`) REFERENCES `blog_comments` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `blog_comments_blog_id_foreign` FOREIGN KEY (`blog_id`) REFERENCES `blogs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `homepage_blogs`
+--
+ALTER TABLE `homepage_blogs`
+  ADD CONSTRAINT `homepage_blogs_blog_id_foreign` FOREIGN KEY (`blog_id`) REFERENCES `blogs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `homepage_brain_services`
+--
+ALTER TABLE `homepage_brain_services`
+  ADD CONSTRAINT `homepage_brain_services_service_id_foreign` FOREIGN KEY (`service_id`) REFERENCES `services` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `homepage_portfolios`
+--
+ALTER TABLE `homepage_portfolios`
+  ADD CONSTRAINT `homepage_portfolios_portfolio_id_foreign` FOREIGN KEY (`portfolio_id`) REFERENCES `portfolios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `homepage_projects`
+--
+ALTER TABLE `homepage_projects`
+  ADD CONSTRAINT `homepage_projects_project_id_foreign` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `homepage_services`
+--
+ALTER TABLE `homepage_services`
+  ADD CONSTRAINT `homepage_services_service_id_foreign` FOREIGN KEY (`service_id`) REFERENCES `services` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `portfolios`
+--
+ALTER TABLE `portfolios`
+  ADD CONSTRAINT `portfolios_service_id_foreign` FOREIGN KEY (`service_id`) REFERENCES `services` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `portfolio_images`
+--
+ALTER TABLE `portfolio_images`
+  ADD CONSTRAINT `portfolio_images_portfolio_id_foreign` FOREIGN KEY (`portfolio_id`) REFERENCES `portfolios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

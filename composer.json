@@ -1,0 +1,5 @@
+{
+    "require": {
+        "digital-creative/nova-filepond": "^0.2.13"
+    }
+}

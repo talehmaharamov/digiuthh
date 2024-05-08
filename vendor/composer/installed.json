@@ -1,0 +1,64 @@
+{
+    "packages": [
+        {
+            "name": "digital-creative/nova-filepond",
+            "version": "v0.2.13",
+            "version_normalized": "0.2.13.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dcasia/nova-filepond.git",
+                "reference": "703271c8fe86a36281a779c8cf55fbbf403138d5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dcasia/nova-filepond/zipball/703271c8fe86a36281a779c8cf55fbbf403138d5",
+                "reference": "703271c8fe86a36281a779c8cf55fbbf403138d5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "time": "2019-11-16T13:25:53+00:00",
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "DigitalCreative\\Filepond\\FilepondServiceProvider"
+                    ]
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "DigitalCreative\\Filepond\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rafael Milewski"
+                }
+            ],
+            "description": "A Nova field for uploading File, Image and Video using filepond.",
+            "keywords": [
+                "Doka",
+                "field",
+                "file",
+                "laravel",
+                "nova",
+                "upload",
+                "video"
+            ],
+            "support": {
+                "issues": "https://github.com/dcasia/nova-filepond/issues",
+                "source": "https://github.com/dcasia/nova-filepond/tree/master"
+            },
+            "install-path": "../digital-creative/nova-filepond"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": []
+}
