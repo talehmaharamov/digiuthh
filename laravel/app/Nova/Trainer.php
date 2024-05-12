@@ -49,6 +49,7 @@ class Trainer extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
+
             Image::make('Image')
                 ->hideWhenCreating()
                 ->deletable(false)

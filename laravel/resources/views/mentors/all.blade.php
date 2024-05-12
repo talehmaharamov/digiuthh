@@ -45,7 +45,7 @@
                                 <div class="team-thumb">
                                     <div class="brd">
                                         <img style="height:225px;object-fit:cover"
-                                             src="{{ asset('/uploads//' . $mentor->image) }}" alt="img">
+                                             src="{{ asset('laravel/public/uploads/' . $mentor->image) }}" alt="img">
                                     </div>
                                 </div>
                                 <div class="team-info">
@@ -54,7 +54,7 @@
                                             {{ $mentor->{'fullname_' . app()->getLocale()} }}
                                         </a>
                                     </h4>
-                                    <span>{{ $mentor->position }}</span>
+                                    <span>{{ __('third.'.$mentor->position) }}</span>
                                     <div class="team-social mt-20">
                                         @if($mentor->facebook_link)
                                             <a href="{{ $mentor->facebook_link }}">
@@ -62,10 +62,14 @@
                                             </a>
                                         @endif
                                         @if($mentor->instagram_link)
-                                            <a href="{{ $mentor->instagram_link }}"><i class="fab fa-instagram"></i></a>
+                                            <a href="{{ $mentor->instagram_link }}">
+                                                <i class="fab fa-instagram"></i>
+                                            </a>
                                         @endif
                                         @if($mentor->linkedin_link)
-                                            <a href="{{ $mentor->linkedin_link }}"><i class="fab fa-linkedin"></i></a>
+                                            <a href="{{ $mentor->linkedin_link }}">
+                                                <i class="fab fa-linkedin"></i>
+                                            </a>
                                         @endif
                                     </div>
                                 </div>

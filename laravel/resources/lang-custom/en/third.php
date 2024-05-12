@@ -99,8 +99,9 @@ return [
     'register' => 'Register',
 
     'mentor' => 'Mentor',
-    'teacher' => 'Teacher',
+    'teacher' => 'Trainer',
     'student' => 'User',
+    'user'=> 'User',
     'your_password' => 'Password',
     'enter_your_password_again' => 'Re-enter your password',
     'send-message' => 'Send message',

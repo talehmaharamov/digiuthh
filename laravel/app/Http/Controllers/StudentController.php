@@ -16,22 +16,26 @@ class StudentController extends Controller
 
     public function register(Request $request)
     {
+//        dd($request->all());
         $vd = $request->validate([
             'email' => 'email:filter|nullable|unique:users,email',
             'phone' => 'min:10|numeric|nullable',
-//            'fullname' => 'min:3|required',
-            'name' => 'min:3|required',
-//            'surname' => 'min:3|required',
-//            'username' => 'min:3|required|unique:users,username',
-            'password' => 'required|confirmed|min:8',
-        ],
-            [
-                'password.required' => __('password is required')
-            ]);
+            'password' => 'required|min:8',
+        ], [
+            'email.email' => __('Please provide a valid email address.'),
+            'email.unique' => __('This email has already been taken.'),
+            'phone.min' => __('Phone number must be at least 10 characters.'),
+            'phone.numeric' => __('Phone number must be numeric.'),
+            'password.required' => __('Password is required.'),
+            'password.min' => __('Password must be at least 8 characters.'),
+            'password.confirmed' => __('Password confirmation does not match.'),
+        ]);
 
         try {
             $user = User::create([
                 ...$vd,
+//                'email' => $request->email,
+//                'phone' => $request->phone,
                 'fullname_az' => $request->fullname,
                 'fullname_en' => $request->fullname,
                 'position' => 'user',

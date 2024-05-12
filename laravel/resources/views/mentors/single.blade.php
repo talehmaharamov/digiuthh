@@ -52,14 +52,14 @@
                                 @endif
                             </h4>
                         </div>
-                        <p>{!! $team->content !!}</p>
+                        <p>{!! $team->{'bio_' . app()->getLocale()} !!}</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-5 col-sm-6">
                     <div class="single-team text-center mb-30 ">
                         <div class="team-thumb">
                             <div class="brd">
-                                <img src="{{ asset('/uploads//' . $team->image) }}"
+                                <img src="{{ asset('laravel/public/uploads/' . $team->image) }}"
                                      alt="{{ $team->{'fullname_' . app()->getLocale()} }}">
                             </div>
                         </div>

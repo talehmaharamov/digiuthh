@@ -44,18 +44,24 @@
             <div class="row">
                 @foreach($trainers as $team)
                     <div class="col-lg-3 col-md-6">
-                        <a href="{{ url('/trainers/' . $team->id . '-' . slug($team->fullname)) }}">
+                        <a href="{{ url('/trainers/' . $team->id . '-' . slug($team->{'fullname_' . app()->getLocale()})) }}">
                             <div class="single-team text-center mb-30 ">
                                 <div class="team-thumb">
                                     <div class="brd">
-                                        <img style="height:225px;object-fit:cover"
-                                             src="{{ asset('uploads/' . $team->image) }}" alt="img">
+                                        @if($team->image != null)
+                                            <img style="height:225px;object-fit:cover"
+                                                 src="{{ asset('laravel/public/uploads/' . $team->image) ?? '' }}" alt="{{ $team->{'fullname_' . app()->getLocale()} }}">
+                                        @else
+                                            <img style="height:225px;object-fit:cover"
+                                                 src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" alt="{{ $team->{'fullname_' . app()->getLocale()} }}">
+                                        @endif
+
                                     </div>
                                 </div>
                                 <div class="team-info">
                                     <h4>
-                                        <a href="{{ url('/trainers/' . $team->id . '-' . slug($team->fullname)) }}">
-                                            {{ ($team->fullname) }}
+                                        <a href="{{ url('/trainers/' . $team->id . '-' . slug($team->{'fullname_' . app()->getLocale()})) }}">
+                                            {{ ($team->{'fullname_' . app()->getLocale()}) }}
                                         </a>
                                     </h4>
                                     <span>

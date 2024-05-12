@@ -19,12 +19,10 @@ class MentorController extends Controller
 
     public function register(Request $request)
     {
+
         $vd = $request->validate([
             'email' => 'email:filter|nullable|unique:users,email',
             'phone' => 'min:10|numeric|nullable',
-//            'fullname' => 'min:3|required',
-//            'name' => 'min:3|required',
-//            'surname' => 'min:3|required',
             'username' => 'min:3|required|unique:users,username',
             'password' => [
                 'required',
@@ -55,7 +53,6 @@ class MentorController extends Controller
                 'bio_az' => $request->content1['az'],
                 'bio_en' => $request->content1['en'],
 
-//                'content' => $request->has('content1') ? $request->content1 : null,
                 'cv' => Storage::disk('public')->put('/', $request->file('cv')),
                 'image' => $fileName,
                 'position' => 'mentor',
@@ -102,8 +99,6 @@ class MentorController extends Controller
                 $message->subject('Yeni mesajınız var!');
             });
             return redirect()->to('/')->with('success', __('third.mail_send_successfully'));
-
         }
-
     }
 }

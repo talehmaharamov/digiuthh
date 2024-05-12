@@ -189,8 +189,9 @@
                     <label for="">{{ __('third.photo') }}</label>
                 @endif
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" name="image" id="inputGroupFile02">
-                    <label class="custom-file-label" for="inputGroupFile02"
+                    <input type="file" class="custom-file-input" name="image" id="inputGroupFile02"
+                           onchange="updateFileName(this)">
+                    <label class="custom-file-label" for="inputGroupFile02" id="fileInputLabel"
                            aria-describedby="inputGroupFileAddon02">Choose file</label>
                 </div>
             </div>
@@ -204,13 +205,9 @@
                         {{ __('third.bio') . ' (AZ)' }}
                     </label>
                 @endif
-                <textarea class="form-control" type="text" id="editor1"
+                <textarea class="form-control" type="text" id="editor1" rows="4"
                           name="content1[az]"></textarea>
             </div>
-            <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
-            <script>
-                CKEDITOR.replace('editor1');
-            </script>
             @error('content')
             <div class="alert alert-danger">{{$message}}</div>
             @enderror
@@ -222,15 +219,13 @@
                         {{ __('third.bio') . ' (EN)' }}
                     </label>
                 @endif
-                <textarea class="form-control" type="text" id="editor2"
+                <textarea class="form-control" type="text" id="editor2" rows="4"
                           name="content1[en]"></textarea>
             </div>
-            <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
-            <script>
-                CKEDITOR.replace('editor2');
-            </script>
             @error('content')
-            <div class="alert alert-danger">{{$message}}</div>
+            <div class="alert alert-danger">
+                {{$message}}
+            </div>
             @enderror
 
             <div class="form-group">
@@ -275,19 +270,14 @@
                        value="">
             </div>
             @error('instagram_link')
-            <div class="alert alert-danger">{{$message}}</div>
+            <div class="alert alert-danger">
+                {{$message}}
+            </div>
             @enderror
 
-            <div class="error-message">
-
-            </div>
             @if(\Illuminate\Support\Facades\Lang::has('third.submit'))
                 <button type="submit" class="btn btn-success">{{ __('third.submit') }}</button>
             @endif
-            {{--            <div class="form-btns pt-20">--}}
-            {{--                <button type="submit" class="btn-c btn-full register-btn">Submit</button>--}}
-            {{--            </div>--}}
-
         </form>
     </section>
 @endsection
@@ -307,6 +297,7 @@
 
             $('#password').attr('type', type === 'password' ? 'text' : 'password')
         });
+
         $('#positionSelect').change(function () {
             var selectedValue = $(this).val();
             if (selectedValue == 'otherPosition') {
@@ -319,5 +310,11 @@
                 $('#Position').prop('hidden', true);
             }
         });
+
+        function updateFileName(input) {
+            var fileName = input.files[0].name;
+            var label = document.getElementById('fileInputLabel');
+            label.innerText = fileName;
+        }
     </script>
 @endsection
