@@ -20,18 +20,24 @@ class LoginController extends Controller
             'email' => 'required',
             'password' => 'required'
         ]);
-        
+
         $fieldType = filter_var($request->email, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
 
         //$credentials = $request->only('email', 'password');
-        
 
-        
+
+
         if (Auth::attempt([$fieldType => $request->input('email'), 'password' => $request->input('password')])) {
             return redirect()->to('/');
         }
 
         return redirect()->back()->with('error', __('auth.failed'));
+    }
+
+    public function checkAuthentication(Request $request)
+    {
+        $isLoggedIn = Auth::check();
+        return response()->json(['loggedIn' => $isLoggedIn]);
     }
 
     public function logout()

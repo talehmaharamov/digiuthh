@@ -9,7 +9,8 @@ return [
         ],
         'public' => [
             'driver' => 'local',
-            'root' => app_path('/../../html/uploads'),
+//            'root' => app_path('/../../html/uploads'),
+        'root' => public_path('uploads'),
             'url' => env('APP_URL').'/uploads',
             'visibility' => 'public',
         ],

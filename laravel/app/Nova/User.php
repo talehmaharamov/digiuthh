@@ -65,7 +65,7 @@ class User extends Resource
                 ]),
 
             ImageUploadPreview::make('Image')
-                ->hideFromDetail()
+//                ->hideFromDetail()
                 ->hideFromIndex()
                 ->hideWhenUpdating()
                 ->deletable(false)
@@ -84,18 +84,6 @@ class User extends Resource
                 'mentor' => 'Mentor',
             ]),
 
-//            Text::make('Name')
-//                ->sortable()
-//                ->rules('required', 'max:255'),
-//
-//            Text::make('Surname')
-//                ->sortable()
-//                ->rules('required', 'max:255'),
-//
-//            Text::make('Fullname')
-//                ->sortable()
-//                ->rules('required', 'max:255'),
-
             Text::make('Fullname_az')
                 ->sortable()
                 ->rules('required', 'max:255'),
@@ -110,16 +98,16 @@ class User extends Resource
                 ->creationRules('unique:users,email')
                 ->updateRules('unique:users,email,{{resourceId}}'),
 
-            File::make('CV', 'cv')
-                ->store(function (Request $request, $model) {
-                    if ($request->cv) {
-                        $model->cv = $request->cv->store('cv', 'public');
-                    }
-                    return $model;
-                })
-                ->download(function ($model) {
-                    return Storage::download($model->cv);
-                }),
+            File::make('CV', 'cv'),
+//                ->store(function (Request $request, $model) {
+//                    if ($request->cv) {
+//                        $model->cv = $request->cv->store('cv', 'public');
+//                    }
+//                    return $model;
+//                })
+//                ->download(function ($model) {
+//                    return Storage::download($model->cv);
+//                }),
 
             Number::make('Rating')->step(0.1)->min(0)->max(5)->hideWhenUpdating()
                 ->hideWhenCreating(),

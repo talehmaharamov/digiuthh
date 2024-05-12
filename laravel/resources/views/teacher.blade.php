@@ -21,40 +21,31 @@
             @endif
 
             <div class="form-group">
-                @if(\Illuminate\Support\Facades\Lang::has('third.fullname'))
-                    <label for="fullname">
-                        {{ __('third.fullname'). ' (AZ)' }}
-                        <span>*</span>
-                    </label>
-                @endif
+                <label for="fullname">
+                    {{ __('third.fullname'). ' (AZ)' }}
+                    <span>*</span>
+                </label>
                 <input class="form-control" placeholder="{{__('third.fullname')}}"
                        type="text"
-                       id="fullname" maxlength="50" name="fullname[az]" value="{{old('fullname')}}">
+                       id="fullname" maxlength="50" name="fullname[az]" value="{{ old('fullname.az') }}">
+                @error('fullname.az')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
-            @error('fullname')
-            <br>
-            <div class="alert alert-danger">
-                {{$message}}
-            </div>
-            @enderror
 
             <div class="form-group">
-                @if(\Illuminate\Support\Facades\Lang::has('third.fullname'))
-                    <label for="fullname">
-                        {{ __('third.fullname'). ' (EN)' }}
-                        <span>*</span>
-                    </label>
-                @endif
+                <label for="fullname">
+                    {{ __('third.fullname'). ' (EN)' }}
+                    <span>*</span>
+                </label>
                 <input class="form-control" placeholder="{{__('third.fullname')}}"
                        type="text"
-                       id="fullname" maxlength="50" name="fullname[en]" value="{{old('fullname')}}">
+                       id="fullname" maxlength="50" name="fullname[en]" value="{{ old('fullname.en') }}">
+                @error('fullname.en')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
-            @error('fullname')
-            <br>
-            <div class="alert alert-danger">
-                {{$message}}
-            </div>
-            @enderror
+
             <div class="form-group">
                 @if(\Illuminate\Support\Facades\Lang::has('third.email'))
                     <label for="email">{{ __('third.email') }}<span>*</span></label>
@@ -194,8 +185,9 @@
                     <label for="">{{ __('third.photo') }}</label>
                 @endif
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" name="image" id="inputGroupFile02">
-                    <label class="custom-file-label" for="inputGroupFile02"
+                    <input type="file" class="custom-file-input" name="image" id="inputGroupFile02"
+                           onchange="updateFileName(this)">
+                    <label class="custom-file-label" for="inputGroupFile02" id="fileInputLabel"
                            aria-describedby="inputGroupFileAddon02">Choose file</label>
                 </div>
             </div>
@@ -209,13 +201,9 @@
                         {{ __('third.bio') . ' (AZ)' }}
                     </label>
                 @endif
-                <textarea class="form-control" type="text" id="editor1"
+                <textarea class="form-control" type="text" id="editor1" rows="4"
                           name="content1[az]"></textarea>
             </div>
-            <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
-            <script>
-                CKEDITOR.replace('editor1');
-            </script>
             @error('content')
             <div class="alert alert-danger">{{$message}}</div>
             @enderror
@@ -227,13 +215,9 @@
                         {{ __('third.bio') . ' (EN)' }}
                     </label>
                 @endif
-                <textarea class="form-control" type="text" id="editor2"
+                <textarea class="form-control" type="text" id="editor2" rows="4"
                           name="content1[en]"></textarea>
             </div>
-            <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
-            <script>
-                CKEDITOR.replace('editor2');
-            </script>
             @error('content')
             <div class="alert alert-danger">{{$message}}</div>
             @enderror
@@ -321,5 +305,11 @@
                 $('#Position').prop('hidden', true);
             }
         });
+
+        function updateFileName(input) {
+            var fileName = input.files[0].name;
+            var label = document.getElementById('fileInputLabel');
+            label.innerText = fileName;
+        }
     </script>
 @endsection

@@ -62,9 +62,8 @@
                                             <a href="/" class="user-link icon-only" onclick="return false;">
                                                 <i class="fas fa-user"></i>
                                             </a>
-
                                             <a href="/" class="user-link full-name" onclick="return false;">
-                                                {{ auth()->user()->name . ' ' . auth()->user()->user }}
+                                                {{ auth()->user()->{'fullname_' . app()->getLocale()} . ' ' . auth()->user()->user }}
                                             </a>
 
                                             <ul>

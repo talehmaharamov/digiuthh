@@ -138,7 +138,7 @@
                                 <div class="team-thumb">
                                     <div class="brd">
                                         <img style="height:225px;object-fit:cover;"
-                                             src="<?php echo e(asset('uploads/' . $trainer->image)); ?>" alt="img">
+                                             src="<?php echo e(asset('laravel/public/uploads/' . $trainer->image)); ?>" alt="img">
                                     </div>
                                 </div>
                                 <div class="team-info">

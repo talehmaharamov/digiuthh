@@ -104,7 +104,7 @@
                                 <div class="team-thumb">
                                     <div class="brd">
                                         <img style="height:225px;object-fit:cover;"
-                                             src="{{ asset('uploads/' . $trainer->image) }}" alt="img">
+                                             src="{{ asset('laravel/public/uploads/' . $trainer->image) }}" alt="img">
                                     </div>
                                 </div>
                                 <div class="team-info">

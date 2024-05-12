@@ -36,23 +36,23 @@
                 <div class="instructor-info">
                     <h2><b>{{ $team->{'fullname_' . app()->getLocale()} }}</b></h2>
                     <span class="instructor-position">
-                            {{ $team->position }}
+                            {{ __('third.'.$team->position) }}
                         </span>
                 </div>
-                <div class="instructor-review">
-                    <div class="total-students">
-                        @if(\Illuminate\Support\Facades\Lang::has('team_page.students'))
-                        <p><b>{{ __('team_page.students') }}</b></p>
-                        @endif
-                        <span>{{ $team->student_count }}</span>
-                    </div>
-                    <div class="total-review">
-                        @if(\Illuminate\Support\Facades\Lang::has('team_page.rating'))
-                        <p><b>{{ __('team_page.rating') }}</b></p>
-                        @endif
-                        <span>{{ $team->rating }}</span>
-                    </div>
-                </div>
+{{--                <div class="instructor-review">--}}
+{{--                    <div class="total-students">--}}
+{{--                        @if(\Illuminate\Support\Facades\Lang::has('team_page.students'))--}}
+{{--                        <p><b>{{ __('team_page.students') }}</b></p>--}}
+{{--                        @endif--}}
+{{--                        <span>{{ $team->student_count }}</span>--}}
+{{--                    </div>--}}
+{{--                    <div class="total-review">--}}
+{{--                        @if(\Illuminate\Support\Facades\Lang::has('team_page.rating'))--}}
+{{--                        <p><b>{{ __('team_page.rating') }}</b></p>--}}
+{{--                        @endif--}}
+{{--                        <span>{{ $team->rating }}</span>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
                 <div class="instructor-description mt-4">
                     <div class="title">
                         <h4>
@@ -61,32 +61,40 @@
                             @endif
                         </h4>
                     </div>
-                    <p>{!! $team->content !!}</p>
+                    <p>{!! $team->{'bio_' . app()->getLocale()} !!}</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-5 col-sm-6">
                 <div class="single-team text-center mb-30 ">
                     <div class="team-thumb">
                         <div class="brd">
-                            <img src="{{ asset('uploads/' . $team->image) }}" alt="{{ $team->{'fullname_' . app()->getLocale()} }}">
-                        </div>
-                    </div>
-                    <div class="team-info">
-                        @if(\Illuminate\Support\Facades\Lang::has('team_page.social_media'))
-                        <span>{{ __('team_page.social_media') }}</span>
-                        @endif
-                        <div class="team-social">
-                            @if($team->facebook_link)
-                            <a href="{{ $team->facebook_link }}"><i class="fab fa-facebook-f"></i></a>
-                            @endif
-                            @if($team->instagram_link)
-                            <a href="{{ $team->instagram_link }}"><i class="fab fa-instagram"></i></a>
-                            @endif
-                            @if($team->linkedin_link)
-                            <a href="{{ $team->linkedin_link }}"><i class="fab fa-linkedin"></i></a>
+                            @if($team->image != null)
+                                <img src="{{ asset('laravel/public/uploads/' . $team->image) ?? '' }}" alt="{{ $team->{'fullname_' . app()->getLocale()} }}">
+                            @else
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" alt="{{ $team->{'fullname_' . app()->getLocale()} }}">
                             @endif
                         </div>
                     </div>
+                    @if(!empty($team->facebook_link) || !empty($team->instagram_link) || !empty($team->linkedin_link))
+
+                        <div class="team-info">
+                            @if(\Illuminate\Support\Facades\Lang::has('team_page.social_media'))
+                                <span>{{ __('team_page.social_media') }}</span>
+                            @endif
+                            <div class="team-social">
+                                @if($team->facebook_link)
+                                    <a href="{{ $team->facebook_link }}"><i class="fab fa-facebook-f"></i></a>
+                                @endif
+                                @if($team->instagram_link)
+                                    <a href="{{ $team->instagram_link }}"><i class="fab fa-instagram"></i></a>
+                                @endif
+                                @if($team->linkedin_link)
+                                    <a href="{{ $team->linkedin_link }}"><i class="fab fa-linkedin"></i></a>
+                                @endif
+                            </div>
+                        </div>
+                    @endif
+
                 </div>
             </div>
         </div>

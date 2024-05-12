@@ -80,4 +80,5 @@ return [
     'my_cabinet' => 'Kabinetim',
     'name' => 'Ad',
     'surname' => 'Soyad',
+    'user' => 'İstifadəçi',
 ];
