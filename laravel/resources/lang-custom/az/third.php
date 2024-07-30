@@ -52,7 +52,7 @@ return [
     'section_count' => 'Fəsil sayı',
     'signup' => 'Daxil Ol',
     'start_date' => 'Başlanğıc tarixi',
-    'submit' => 'Qeydiyyatdan keç.',
+    'submit' => 'Qeydiyyatdan keç',
     'time' => 'Vaxt',
     'total_question_count' => 'Ümumi sual sayı',
     'trainer_name' => 'Təlimçinin adı',
@@ -62,7 +62,11 @@ return [
     'website' => 'Veb-səhifə',
     'your_email' => 'Sizin Elektron poçtunuz',
     'your_rate' => 'Sizin dəyərləndirməniz',
-    'password_error_t' => 'Şifrə minimum 1 böyük hərf, rəqəm və simvoldan (@#!?) ibarət 8 xarakterdən ibarət olmalıdır.',
+    'password_error_t' => "Şifrə ən azı 8, ən çox 32 simvol olmalıdır.
+    Şifrədə bir böyük hərf (A-Z) olmalıdır.
+    Şifrədə bir kiçik hərf (a-z) olmalıdır.
+    Şifrədə ən azı bir xüsusi simvol olmalıdır: ~ ! @ # $ % ^ * ( ) _ - + = { } [ ] | : ; " . " , ? . < > & və ya ' işarələrindən istifadə edilməməlidir.
+    Şifrədə bir rəqəm (0-9) olmalıdır.",
     'register' => 'Qeydiyyat',
 
     'mentor' => 'Mentor',
@@ -81,4 +85,5 @@ return [
     'name' => 'Ad',
     'surname' => 'Soyad',
     'user' => 'İstifadəçi',
+    'user_not_found' => 'Istifadəçi tapılmadı!'
 ];

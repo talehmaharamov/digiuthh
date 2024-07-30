@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-use phpseclib3\File\ASN1\Maps\Validity;
 
 class MentorController extends Controller
 {
@@ -19,25 +18,34 @@ class MentorController extends Controller
 
     public function register(Request $request)
     {
-
-        $vd = $request->validate([
-            'email' => 'email:filter|nullable|unique:users,email',
-            'phone' => 'min:10|numeric|nullable',
-            'username' => 'min:3|required|unique:users,username',
-            'password' => [
-                'required',
-                'confirmed',
-                'min:8',
-                'regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/',
-            ],
-//            'content' => 'nullable',
-            'linkedin_link' => 'nullable',
-            'facebook_link' => 'nullable',
-            'instagram_link' => 'nullable',
-            'cv' => 'required|mimes:jpg,png,jpeg,svg,pdf,webp'
-        ]);
-
         try {
+            $vd = Validator::make($request->all(), [
+                    'email' => 'email:filter|nullable|unique:users,email',
+                    'phone' => 'min:10|numeric|nullable',
+                    'username' => 'min:3|required|unique:users,username',
+                    'password' => [
+                        'required',
+                        'string',
+                        'min:8',
+                        'max:32',
+                        'regex:/[A-Z]/',
+                        'regex:/[a-z]/',
+                        'regex:/[0-9]/',
+                        'regex:/[@$!%*?&^()_+={}\[\]|:;"\',.<>#]/', // Must contain at least one special character
+                        'not_regex:/[<>]/', // Must not contain < or >
+                        'not_regex:/[&]/', // Must not contain &
+                        'not_regex:/[\']/', // Must not contain '
+                    ],
+                    'linkedin_link' => 'nullable',
+                    'facebook_link' => 'nullable',
+                    'instagram_link' => 'nullable',
+                    'cv' => 'required|mimes:jpg,png,jpeg,svg,pdf,webp'
+                ]
+            );
+
+            if ($vd->fails()) {
+                return redirect()->back()->withErrors($vd)->withInput();
+            }
 
             if ($request->hasFile('image')) {
                 $fileName = uniqid() . '.' . $request->image->getClientOriginalExtension();
@@ -47,12 +55,16 @@ class MentorController extends Controller
             }
 
             $user = User::create([
-                ...$vd,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'username' => $request->username,
                 'fullname_az' => $request->fullname['az'],
                 'fullname_en' => $request->fullname['en'],
                 'bio_az' => $request->content1['az'],
                 'bio_en' => $request->content1['en'],
-
+                'linkedin_link' => $request->linkedin_link,
+                'facebook_link' => $request->facebook_link,
+                'instagram_link' => $request->instagram_link,
                 'cv' => Storage::disk('public')->put('/', $request->file('cv')),
                 'image' => $fileName,
                 'position' => 'mentor',

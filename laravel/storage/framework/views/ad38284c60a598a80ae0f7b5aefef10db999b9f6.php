@@ -23,58 +23,46 @@
             <?php endif; ?>
 
             <div class="form-group">
-                <?php if(\Illuminate\Support\Facades\Lang::has('third.fullname')): ?>
-                    <label for="fullname">
-                        <?php echo e(__('third.fullname'). ' (AZ)'); ?>
+                <label for="fullname">
+                    <?php echo e(__('third.fullname'). ' (AZ)'); ?>
 
-                        <span>*</span>
-                    </label>
-                <?php endif; ?>
+                    <span>*</span>
+                </label>
                 <input class="form-control" placeholder="<?php echo e(__('third.fullname')); ?>"
                        type="text"
-                       id="fullname" maxlength="50" name="fullname[az]" value="<?php echo e(old('fullname')); ?>">
-            </div>
-            <?php $__errorArgs = ['fullname'];
+                       id="fullname" maxlength="50" name="fullname[az]" value="<?php echo e(old('fullname.az')); ?>">
+                <?php $__errorArgs = ['fullname.az'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-            <br>
-            <div class="alert alert-danger">
-                <?php echo e($message); ?>
-
-            </div>
-            <?php unset($message);
+                <div class="alert alert-danger"><?php echo e($message); ?></div>
+                <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
+            </div>
 
             <div class="form-group">
-                <?php if(\Illuminate\Support\Facades\Lang::has('third.fullname')): ?>
-                    <label for="fullname">
-                        <?php echo e(__('third.fullname'). ' (EN)'); ?>
+                <label for="fullname">
+                    <?php echo e(__('third.fullname'). ' (EN)'); ?>
 
-                        <span>*</span>
-                    </label>
-                <?php endif; ?>
+                    <span>*</span>
+                </label>
                 <input class="form-control" placeholder="<?php echo e(__('third.fullname')); ?>"
                        type="text"
-                       id="fullname" maxlength="50" name="fullname[en]" value="<?php echo e(old('fullname')); ?>">
-            </div>
-            <?php $__errorArgs = ['fullname'];
+                       id="fullname" maxlength="50" name="fullname[en]" value="<?php echo e(old('fullname.en')); ?>">
+                <?php $__errorArgs = ['fullname.en'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-            <br>
-            <div class="alert alert-danger">
-                <?php echo e($message); ?>
-
-            </div>
-            <?php unset($message);
+                <div class="alert alert-danger"><?php echo e($message); ?></div>
+                <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
+            </div>
 
             <div class="form-group">
                 <?php if(\Illuminate\Support\Facades\Lang::has('third.email')): ?>
@@ -183,7 +171,11 @@ unset($__errorArgs, $__bag); ?>
 
                 </div>
                 <?php if(\Illuminate\Support\Facades\Lang::has('third.your_password')): ?>
-                    <label for="password"><?php echo e(__('third.your_password')); ?><span>*</span></label>
+                    <label for="password">
+                        <?php echo e(__('third.your_password')); ?>
+
+                        <span>*</span>
+                    </label>
                 <?php endif; ?>
                 <input class="form-control" type="password" name="password" id="password"
                        placeholder="<?php echo e(__('third.your_password')); ?>">
@@ -376,22 +368,18 @@ $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-            <div class="alert alert-danger"><?php echo e($message); ?></div>
+            <div class="alert alert-danger">
+                <?php echo e($message); ?>
+
+            </div>
             <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
 
-            <div class="error-message">
-
-            </div>
             <?php if(\Illuminate\Support\Facades\Lang::has('third.submit')): ?>
                 <button type="submit" class="btn btn-success"><?php echo e(__('third.submit')); ?></button>
             <?php endif; ?>
-            
-            
-            
-
         </form>
     </section>
 <?php $__env->stopSection(); ?>
@@ -411,7 +399,7 @@ unset($__errorArgs, $__bag); ?>
 
             $('#password').attr('type', type === 'password' ? 'text' : 'password')
         });
-        
+
         $('#positionSelect').change(function () {
             var selectedValue = $(this).val();
             if (selectedValue == 'otherPosition') {

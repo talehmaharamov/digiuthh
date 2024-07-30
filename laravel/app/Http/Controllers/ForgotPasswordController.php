@@ -1,15 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use Exception;
 use Illuminate\Http\Request;
 use DB;
 use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use Hash;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
-class ForgotPasswordController extends Controller {
+class ForgotPasswordController extends Controller
+{
 
 
     public function view()
@@ -19,33 +23,41 @@ class ForgotPasswordController extends Controller {
 
     public function sendMail(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email|exists:users',
-        ]);
+        try {
+            $vd = Validator::make($request->all(), [
+                'email' => 'required|email|exists:users',
+            ]);
 
-        $token = Str::random(64);
+            if ($vd->fails()) {
+                return redirect()->back()->with('error', __('third.user_not_found'));
+            }
 
-        DB::table('password_resets')->whereEmail($request->email)->delete();
+            $token = Str::random(64);
 
-        DB::table('password_resets')->insert([
-            'email' => $request->email,
-            'token' => $token,
-            'created_at' => Carbon::now()
-        ]);
+            DB::table('password_resets')->whereEmail($request->email)->delete();
 
-        Mail::send('email.forgetPassword', ['token' => $token], function($message) use($request){
-            $message->to($request->email);
-            $message->subject('Reset Password');
-        });
+            DB::table('password_resets')->insert([
+                'email' => $request->email,
+                'token' => $token,
+                'created_at' => Carbon::now()
+            ]);
 
-        return redirect()->to('/')->with('success', __('third.forgot_success_message'));
+            Mail::send('email.forgetPassword', ['token' => $token], function ($message) use ($request) {
+                $message->to($request->email);
+                $message->subject('Reset Password');
+            });
+
+            return redirect()->to('/')->with('success', __('third.forgot_success_message'));
+        } catch (Exception $exception) {
+            return $exception->getMessage();
+        }
     }
 
     public function resetView($token)
     {
         $reset = DB::table('password_resets')->whereToken($token)->count() > 0;
 
-        if(!$reset) {
+        if (!$reset) {
             abort(404);
         }
 
@@ -56,7 +68,7 @@ class ForgotPasswordController extends Controller {
     {
         $reset = DB::table('password_resets')->whereToken($request->token)->first();
 
-        if(!$reset) {
+        if (!$reset) {
             abort(403);
         }
 

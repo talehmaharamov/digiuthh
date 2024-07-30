@@ -15,7 +15,7 @@
         </div>
         <div class="row">
             <?php $i = 0; ?>
-            @foreach($courses as $course)
+            @foreach($lastSixCourses as $course)
                     <?php $i++; ?>
                 @if($course->course_sections->count() > 0 && $i <= 6)
                     <div class="col-lg-4 col-md-4 col-sm-6 mb-50">

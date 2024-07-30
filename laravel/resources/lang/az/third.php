@@ -83,7 +83,7 @@ return [
     'login_password' => 'Şifrəniz',
     'already_joined' => 'You are already joined',
     'zoom' => 'Görüş',
-    'update' => 'Redaqtə et',
+    'update' => 'Redaktə et',
     'sign-in' => 'Daxil ol',
     'do-comment' => 'Rəy at',
     'email_or_username' => 'Email or Username',
@@ -91,5 +91,9 @@ return [
     'Section' => 'Fəsil',
     'Preview' => 'Preview',
     'more' => 'Hamısını gör',
-    'exam_submit' => 'Təsdiq et'
+    'exam_submit' => 'Təsdiq et',
+    'save' => 'Yadda saxla',
+    'verify_success_message' => 'E-poçtunuza təsdiq məktubu göndərildi. Zəhmət olmasa, e-poçtunuza daxil olaraq hesabınızı təsdiq edin.',
+    'error' => 'Xəta'
+
 ];

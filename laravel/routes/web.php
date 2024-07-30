@@ -85,7 +85,7 @@ Route::middleware('auth')->group(function () {
         //dd(auth()->user());
         auth()->user()->sendEmailVerificationNotification();
 
-        return redirect()->to('/')->with('success', __('verify.success_message'));
+        return redirect()->to('/')->with('success', __('third.verify_success_message'));
     })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
     Route::get('/verify', \App\Http\Controllers\VerificationController::class)->name('verification.notice');
 });

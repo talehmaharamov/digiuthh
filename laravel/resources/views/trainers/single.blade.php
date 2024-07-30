@@ -77,7 +77,7 @@
                     </div>
                     @if(!empty($team->facebook_link) || !empty($team->instagram_link) || !empty($team->linkedin_link))
 
-                        <div class="team-info">
+                        <div class="team-info ti3">
                             @if(\Illuminate\Support\Facades\Lang::has('team_page.social_media'))
                                 <span>{{ __('team_page.social_media') }}</span>
                             @endif

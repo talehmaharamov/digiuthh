@@ -21,40 +21,30 @@
             @endif
 
             <div class="form-group">
-                @if(\Illuminate\Support\Facades\Lang::has('third.fullname'))
-                    <label for="fullname">
-                        {{ __('third.fullname'). ' (AZ)' }}
-                        <span>*</span>
-                    </label>
-                @endif
+                <label for="fullname">
+                    {{ __('third.fullname'). ' (AZ)' }}
+                    <span>*</span>
+                </label>
                 <input class="form-control" placeholder="{{__('third.fullname')}}"
                        type="text"
-                       id="fullname" maxlength="50" name="fullname[az]" value="{{old('fullname')}}">
+                       id="fullname" maxlength="50" name="fullname[az]" value="{{ old('fullname.az') }}">
+                @error('fullname.az')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
-            @error('fullname')
-            <br>
-            <div class="alert alert-danger">
-                {{$message}}
-            </div>
-            @enderror
 
             <div class="form-group">
-                @if(\Illuminate\Support\Facades\Lang::has('third.fullname'))
-                    <label for="fullname">
-                        {{ __('third.fullname'). ' (EN)' }}
-                        <span>*</span>
-                    </label>
-                @endif
+                <label for="fullname">
+                    {{ __('third.fullname'). ' (EN)' }}
+                    <span>*</span>
+                </label>
                 <input class="form-control" placeholder="{{__('third.fullname')}}"
                        type="text"
-                       id="fullname" maxlength="50" name="fullname[en]" value="{{old('fullname')}}">
+                       id="fullname" maxlength="50" name="fullname[en]" value="{{ old('fullname.en') }}">
+                @error('fullname.en')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
-            @error('fullname')
-            <br>
-            <div class="alert alert-danger">
-                {{$message}}
-            </div>
-            @enderror
 
             <div class="form-group">
                 @if(\Illuminate\Support\Facades\Lang::has('third.email'))
@@ -140,11 +130,14 @@
                     {{ __('third.password_error_t') }}
                 </div>
                 @if(\Illuminate\Support\Facades\Lang::has('third.your_password'))
-                    <label for="password">{{ __('third.your_password') }}<span>*</span></label>
+                    <label for="password">
+                        {{ __('third.your_password') }}
+                        <span>*</span>
+                    </label>
                 @endif
                 <input class="form-control" type="password" name="password" id="password"
                        placeholder="{{__('third.your_password')}}">
-                <span class="show-password">
+                <span class="show-password mt-4">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                          stroke-width="2">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>

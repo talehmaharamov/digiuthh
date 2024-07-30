@@ -28,7 +28,7 @@
                     <a href="<?php echo e(url('/blogs/' . $blog->id . '-' . slug($blog->title))); ?>">
                         <div class="single-post2 mb-50  wow fadeInDown  animated">
                             <div class="blog-thumb2">
-                                <img src="<?php echo e(asset('uploads/' . $blog->image)); ?>" alt="img">
+                                <img src="<?php echo e(asset('laravel/public/uploads/' . $blog->image)); ?>" alt="img">
                             </div>
                             <div class="blog-content2 text-center">
                                 <div class="b-meta">

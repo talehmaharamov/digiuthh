@@ -340,7 +340,7 @@ unset($__errorArgs, $__bag); ?>
 
                 <input type="hidden" name="old_file" value="<?php echo e(auth()->user()->image); ?>">
 
-                <button type="submit" class="btn-c" style="padding: 12px 24px;"><?php echo e(__('third.update')); ?></button>
+                <button type="submit" class="btn-c" style="padding: 12px 24px;"><?php echo e(__('third.save')); ?></button>
             </form>
         </div>
     </section>

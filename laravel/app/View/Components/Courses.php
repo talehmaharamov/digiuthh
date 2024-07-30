@@ -8,6 +8,7 @@ use Illuminate\View\Component;
 class Courses extends Component
 {
     public $courses;
+    public $lastSixCourses;
     /**
      * Create a new component instance.
      *
@@ -16,6 +17,7 @@ class Courses extends Component
     public function __construct()
     {
         $this->courses = Course::orderBy('id', 'desc')->with(['user', 'course_category', 'course_reviews', 'course_comments', 'course_sections.course_episodes'])->withCount('course_reviews')->get();
+        $this->lastSixCourses = $this->courses->slice(-6);
     }
 
     /**

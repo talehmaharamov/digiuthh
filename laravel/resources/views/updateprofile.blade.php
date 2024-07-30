@@ -239,7 +239,7 @@
 
                 <input type="hidden" name="old_file" value="{{auth()->user()->image}}">
 
-                <button type="submit" class="btn-c" style="padding: 12px 24px;">{{__('third.update')}}</button>
+                <button type="submit" class="btn-c" style="padding: 12px 24px;">{{__('third.save')}}</button>
             </form>
         </div>
     </section>
