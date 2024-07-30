@@ -99,6 +99,7 @@ class User extends Resource
                 ->updateRules('unique:users,email,{{resourceId}}'),
 
             File::make('CV', 'cv'),
+
 //                ->store(function (Request $request, $model) {
 //                    if ($request->cv) {
 //                        $model->cv = $request->cv->store('cv', 'public');

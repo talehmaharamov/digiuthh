@@ -47,7 +47,7 @@
                             </ul>
                         </div>
                         <div class="details__content-img">
-                            <img src="{{ asset('/uploads/' . $blog->image) }}" style="width:100%;" alt="">
+                            <img src="{{ asset('laravel/public/uploads/' . $blog->image) }}" style="width:100%;" alt="">
                         </div>
                         <p>{!! $blog->{'content' . (app()->getLocale() === 'az' ? '_az' : '')} !!}</p>
                     </div>
@@ -65,7 +65,7 @@
                             <div class="col-md-6">
                                 <div class="related-post-wrap mb-30">
                                     <div class="post-thumb">
-                                        <img src="{{ asset('uploads/' . $blog->image) }}" alt="">
+                                        <img src="{{ asset('laravel/public/uploads/' . $blog->image) }}" alt="">
                                     </div>
                                     <div class="rp__content">
                                         <h3>

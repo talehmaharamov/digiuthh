@@ -149,20 +149,24 @@
                                         </a>
                                     </h4>
                                     <span>
-                                        <?php echo e($trainer->position); ?>
+                                        <?php echo e(__('third.'.$trainer->position)); ?>
 
                                     </span>
                                     <div class="team-social mt-20">
                                         <?php if($trainer->facebook_link): ?>
-                                            <a href="<?php echo e($trainer->facebook_link); ?>"><i
-                                                    class="fab fa-facebook-f"></i></a>
+                                            <a href="<?php echo e($trainer->facebook_link); ?>" style="background: #345aa8;">
+                                                <i class="fab fa-facebook-f"></i>
+                                            </a>
                                         <?php endif; ?>
                                         <?php if($trainer->instagram_link): ?>
-                                            <a class="bg-danger" href="<?php echo e($trainer->instagram_link); ?>"><i
-                                                    class="fab fa-instagram"></i></a>
+                                            <a class="bg-danger" href="<?php echo e($trainer->instagram_link); ?>" style="background: #CD201F;">
+                                                <i class="fab fa-instagram"></i>
+                                            </a>
                                         <?php endif; ?>
                                         <?php if($trainer->linkedin_link): ?>
-                                            <a href="<?php echo e($trainer->linkedin_link); ?>"><i class="fab fa-linkedin"></i></a>
+                                            <a href="<?php echo e($trainer->linkedin_link); ?>" style="background: #0057FF;">
+                                                <i class="fab fa-linkedin"></i>
+                                            </a>
                                         <?php endif; ?>
                                     </div>
                                 </div>
@@ -205,7 +209,7 @@
                                 <div class="team-thumb">
                                     <div class="brd">
                                         <img style="height:225px;object-fit:cover;"
-                                             src="<?php echo e(asset('/uploads//' . $mentor->image)); ?>" alt="img">
+                                             src="<?php echo e(asset('laravel/public/uploads/' . $mentor->image)); ?>" alt="img">
                                     </div>
                                 </div>
                                 <div class="team-info">
@@ -216,12 +220,14 @@
                                         </a>
                                     </h4>
                                     <span>
-                                        <?php echo e($mentor->position); ?>
+                                        <?php echo e(__('third.'.$mentor->position)); ?>
 
                                     </span>
                                     <div class="team-social mt-20">
                                         <?php if($mentor->facebook_link): ?>
-                                            <a href="<?php echo e($mentor->facebook_link); ?>"><i class="fab fa-facebook-f"></i></a>
+                                            <a href="<?php echo e($mentor->facebook_link); ?>">
+                                                <i class="fab fa-facebook-f"></i>
+                                            </a>
                                         <?php endif; ?>
                                         <?php if($mentor->instagram_link): ?>
                                             <a class="bg-danger" href="<?php echo e($mentor->instagram_link); ?>">

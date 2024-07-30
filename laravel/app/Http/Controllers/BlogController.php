@@ -24,15 +24,15 @@ class BlogController extends Controller
         $categories= BlogCategory::all();
         return view('blogs.all', compact('blogs', 'categories'));
     }
-    
+
     public function single_blog($id, $slug)
     {
         $blog = Blog::findOrFail($id);
         $blogs = Blog::where("id", '<>', $id)->take(2)->orderBy("id", 'desc')->get();
         return view("blogs.single", compact("blog", "blogs"));
     }
-    
-    
+
+
     public function all_news()
     {
         $blogs = News::orderBy('id', 'desc')->paginate(10);
@@ -47,7 +47,7 @@ class BlogController extends Controller
         $categories= NewsCategory::all();
         return view('news.all', compact('blogs', 'categories'));
     }
-    
+
     public function single_news($id, $slug)
     {
         $blog = News::findOrFail($id);

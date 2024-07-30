@@ -1720,9 +1720,13 @@ margin-bottom: 90px;
         flex-direction: column-reverse;
     }
 
+    .instructor-area .instructor-info .ti2{
+        margin-top: -175px !important;
+    }
+
     .instructor-area .instructor-info{
-        margin-top: -100px;
         margin-bottom: 100px;
+        margin-top: -80px;
     }
 
     .instructor-area .instructor-info h2{
@@ -1744,6 +1748,10 @@ margin-bottom: 90px;
     .instructor-area .team-info span{
         display: block;
         text-align: left;
+    }
+
+    .instructor-area .team-info .ti2{
+        margin-bottom: -177px !important;
     }
 
     .instructor-area .team-info{

@@ -41,7 +41,12 @@
             <div class="row intructor-row">
                 <div class="col-lg-8 col-md-7 col-sm-12">
                     <div class="instructor-info">
-                        <h2><b><?php echo e($team->{'fullname_' . app()->getLocale()}); ?></b></h2>
+                        <h2>
+                            <b>
+                                <?php echo e($team->{'fullname_' . app()->getLocale()}); ?>
+
+                            </b>
+                        </h2>
                         <span class="instructor-position">
                             <?php echo e(__('third.'.$team->position)); ?>
 
@@ -58,6 +63,8 @@
                         <p><?php echo $team->{'bio_' . app()->getLocale()}; ?></p>
                     </div>
                 </div>
+
+
                 <div class="col-lg-4 col-md-5 col-sm-6">
                     <div class="single-team text-center mb-30 ">
                         <div class="team-thumb">
@@ -66,7 +73,7 @@
                                      alt="<?php echo e($team->{'fullname_' . app()->getLocale()}); ?>">
                             </div>
                         </div>
-                        <div class="team-info">
+                        <div class="team-info" style="margin-bottom: -177px !important;">
                             <?php if(\Illuminate\Support\Facades\Lang::has('team_page.social_media')): ?>
                                 <span><?php echo e(__('team_page.social_media')); ?></span>
                             <?php endif; ?>
@@ -82,7 +89,7 @@
                                 <?php endif; ?>
                             </div>
 
-                            <button type="button" class="btn btn-primary mt-4" data-toggle="modal"
+                            <button type="button" class="btn btn-primary mt-4" data-toggle="modal" style="margin-bottom: 25px !important;"
                                     data-target="#exampleModalCenter">
                                 <?php echo e(__('third.send-message')); ?>
 
@@ -129,6 +136,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>

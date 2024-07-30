@@ -95,13 +95,16 @@ return [
     'your_phone' => 'Your Phone',
     'your_rate' => 'Your rate',
     'zoom' => 'Meeting',
-    'password_error_t' => 'Password must contain at least 8 characters, including 1 uppercase letter, a number, and a symbol (@#!?).',
+    'password_error_t' => "should be at least 8, but no more than 32 characters.
+    It should contain one UPPERCASE letter.
+    It should contain one lowercase letter.
+    It should contain at least one special character: ~ ! @ # $ % ^ * ( ) _ - + = { } [ ] | : ; " . " , ?. Do not use <> & or '.
+    It should contain one number digit (numbers).",
     'register' => 'Register',
-
     'mentor' => 'Mentor',
     'teacher' => 'Trainer',
     'student' => 'User',
-    'user'=> 'User',
+    'user' => 'User',
     'your_password' => 'Password',
     'enter_your_password_again' => 'Re-enter your password',
     'send-message' => 'Send message',
@@ -111,4 +114,9 @@ return [
     'my_cabinet' => 'My Cabinet',
     'name' => 'Name',
     'surname' => 'Surname',
+    'user_not_found' => 'User not found!',
+    'save' => 'Save',
+    'verify_success_message' => 'A confirmation email has been sent to your email. Please verify your account by entering your email.',
+    'error' => 'Error'
+
 ];

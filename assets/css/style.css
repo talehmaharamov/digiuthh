@@ -296,6 +296,8 @@
     padding-top: 80px;
 }
 
+
+
 .btn-c {
     margin-top: 20px;
     padding: 8px 32px;
@@ -2637,7 +2639,7 @@ section:hover .section-title h2::before {
 }
 
 .services-box .services-icon {
-    border: 1px solid #9CCA46;
+    /*border: 1px solid #9CCA46;*/
     display: inline-block;
     width: 100%;
     height: 60px;
@@ -2649,7 +2651,7 @@ section:hover .section-title h2::before {
     height: 100%;
     width: 100%;
     /*border-radius: 50%;*/
-    object-fit: cover !important;
+    object-fit: contain !important;
 }
 
 .services-box .services-content2 {
@@ -3858,21 +3860,21 @@ section:hover .section-title h2::before {
     box-shadow: 3px 4px 15px #00000026;
 }
 
-.team-info .team-social a:nth-child(1) {
-    background: #345aa8;
-}
+/*.team-info .team-social a:nth-child(1) {*/
+/*    background: #345aa8;*/
+/*}*/
 
-.team-info .team-social a:nth-child(2) {
-    background: #171515;
-}
+/*.team-info .team-social a:nth-child(2) {*/
+/*    background: #345aa8;*/
+/*}*/
 
-.team-info .team-social a:nth-child(3) {
-    background: #0057FF;
-}
+/*.team-info .team-social a:nth-child(3) {*/
+/*    background: #0057FF;*/
+/*}*/
 
-.team-info .team-social a:nth-child(4) {
-    background: #CD201F;
-}
+/*.team-info .team-social a:nth-child(4) {*/
+/*    background: #CD201F;*/
+/*}*/
 
 .team-info .team-social a i {
     font-size: 17px;

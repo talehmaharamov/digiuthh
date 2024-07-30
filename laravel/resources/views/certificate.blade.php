@@ -277,7 +277,7 @@
         <button id="btn_convert1" type="button">JPEG</button>
         <span>{{ __('third.or') }}</span>
         <button id="btn_convert2">PDF</button>
-        <a class="btn btn-secondary btn-xs" href="{{route('home')}}">{{__('header.back')}}</a>
+        <a class="btn btn-secondary btn-xs" href="/">{{__('header.back')}}</a>
 
     </div>
     <div class="container" id="container">
@@ -346,7 +346,10 @@
                         <div class="card_body">
                             <div class="name">
                                 <img src="/assets/img/certificate/name_sign.svg" alt=""><span>
-                                    {{ ($certificate->user->name ?? '') . ' ' .($certificate->user->surname) }}</span><img
+                                       {{ $certificate->user->fullname ?? $certificate->user->{'fullname_' . app()->getLocale()} }}
+
+                                </span>
+                                <img
                                     src="/assets/img/certificate/name_sign.svg" alt=""></div>
                             @if(\Illuminate\Support\Facades\Lang::has('third.certificate_body'))
                                 <p class="course_description">

@@ -114,19 +114,23 @@
                                         </a>
                                     </h4>
                                     <span>
-                                        {{ $trainer->position }}
+                                        {{ __('third.'.$trainer->position) }}
                                     </span>
                                     <div class="team-social mt-20">
                                         @if($trainer->facebook_link)
-                                            <a href="{{ $trainer->facebook_link }}"><i
-                                                    class="fab fa-facebook-f"></i></a>
+                                            <a href="{{ $trainer->facebook_link }}" style="background: #345aa8;">
+                                                <i class="fab fa-facebook-f"></i>
+                                            </a>
                                         @endif
                                         @if($trainer->instagram_link)
-                                            <a class="bg-danger" href="{{ $trainer->instagram_link }}"><i
-                                                    class="fab fa-instagram"></i></a>
+                                            <a class="bg-danger" href="{{ $trainer->instagram_link }}" style="background: #CD201F;">
+                                                <i class="fab fa-instagram"></i>
+                                            </a>
                                         @endif
                                         @if($trainer->linkedin_link)
-                                            <a href="{{ $trainer->linkedin_link }}"><i class="fab fa-linkedin"></i></a>
+                                            <a href="{{ $trainer->linkedin_link }}" style="background: #0057FF;">
+                                                <i class="fab fa-linkedin"></i>
+                                            </a>
                                         @endif
                                     </div>
                                 </div>
@@ -168,7 +172,7 @@
                                 <div class="team-thumb">
                                     <div class="brd">
                                         <img style="height:225px;object-fit:cover;"
-                                             src="{{ asset('/uploads//' . $mentor->image) }}" alt="img">
+                                             src="{{ asset('laravel/public/uploads/' . $mentor->image) }}" alt="img">
                                     </div>
                                 </div>
                                 <div class="team-info">
@@ -178,11 +182,13 @@
                                         </a>
                                     </h4>
                                     <span>
-                                        {{ $mentor->position }}
+                                        {{ __('third.'.$mentor->position) }}
                                     </span>
                                     <div class="team-social mt-20">
                                         @if($mentor->facebook_link)
-                                            <a href="{{ $mentor->facebook_link }}"><i class="fab fa-facebook-f"></i></a>
+                                            <a href="{{ $mentor->facebook_link }}">
+                                                <i class="fab fa-facebook-f"></i>
+                                            </a>
                                         @endif
                                         @if($mentor->instagram_link)
                                             <a class="bg-danger" href="{{ $mentor->instagram_link }}">

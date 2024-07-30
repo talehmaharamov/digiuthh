@@ -38,12 +38,14 @@
     <section class="inner-blog pt-120 pb-120">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4">
-                    @foreach($blogs as $blog)
+                @foreach($blogs as $blog)
+                    <div class="col-lg-4">
+
                         <div class="bsingle__post mb-50" style="margin-top: -80px;">
                             <a href="{{ url('/blogs/' . $blog->id . '-' . slug($blog->title)) }}">
                                 <div class="bsingle__post-thumb">
-                                    <img src="{{ asset('uploads/' . $blog->image) }}" alt="{{ $blog->title }}">
+                                    <img src="{{ asset('laravel/public/uploads/' . $blog->image) }}"
+                                         alt="{{ $blog->title }}">
                                 </div>
                                 <div class="bsingle__content">
                                     <div class="admin d-none">
@@ -74,19 +76,12 @@
                                             __('header.category') }}</a>
                                                 </li>
                                             @endif
-
-                                            <!--                                    @foreach($categories as $category)-->
-                                            <!--                                                @if($blog->blog_category_id === $category->id)-->
                                             <li class="cat-item cat-item-16">
                                                 <a style="color: inherit !important;"
                                                    href="{{ url('/blogs/category/' . $category->id . '-' . slug($category->title)) }}">{{
-                                            $category->title }}
+                                                    $category->title }}
                                                 </a>
                                             </li>
-                                            <!--                                                    @else-->
-                                            <!--                                                        @continue-->
-                                            <!--                                                @endif-->
-                                            <!--                                    @endforeach-->
                                         </ul>
                                     </div>
                                     <div class="meta-info" style="margin-top: 15px;">
@@ -99,77 +94,14 @@
                                 </div>
                             </a>
                         </div>
-                    @endforeach
-                    {{ $blogs->links() }}
 
-                </div>
 
-                {{--
-                <div class="col-sm-12 col-md-12 col-lg-4">--}}
-                {{--
-                <aside class="sidebar-widget">--}}
-                {{--
-                <section id="custom_html-5" class="widget_text widget widget_custom_html d-none">--}}
-                {{-- @if(\Illuminate\Support\Facades\Lang::has('third.follow_us'))--}}
-                {{-- <h2 class="widget-title">{{ __('third.follow_us') }}</h2>--}}
-                {{-- @else--}}
-                {{-- <h2></h2>--}}
-                {{-- @endif--}}
-                {{--
-                <div class="textwidget custom-html-widget">--}}
-                {{--
-                <div class="widget-social">--}}
-                {{-- <a href="https://www.linkedin.com/company/76268853/"><i
-                            class="fab fa-linkedin"></i></a>--}}
-                {{-- <a href="https://www.facebook.com/Digiuth-111301508002237/">
-                    <i--
-                            }}
-                            {{-- class="fab fa-facebook-f"></i>
-                </a>--}}
-                {{-- <a href="https://www.instagram.com/digiuth/"><i class="fab fa-instagram"></i></a>--}}
-                {{--
-            </div>
-            --}}
-                {{--
-            </div>
-            --}}
-                {{--
-            </section>
-            --}}
-
-                {{--
-            </aside>
-            --}}
-                {{--
-            </div>
-            --}}
+                    </div>
+                @endforeach
 
             </div>
+            {{ $blogs->links() }}
             <aside class="sidebar-widget">
-                {{--
-                <section id="categories-1" class="widget widget_categories">--}}
-                {{-- @if(\Illuminate\Support\Facades\Lang::has('Categories'))--}}
-                {{-- <h2 class="widget-title">{{ __('Categories') }}</h2>--}}
-                {{-- @else--}}
-                {{-- <h2></h2>--}}
-                {{-- @endif--}}
-                {{--
-                <ul>--}}
-                {{-- @foreach($categories as $category)--}}
-                {{--
-                <li class="cat-item cat-item-16">--}}
-                {{-- <a href="{{ url('/blogs/category/' . $category->id . '-' . slug($category->title)) }}">{{--}}
-                {{-- $category->title }}</a>--}}
-                {{--
-            </li>
-            --}}
-                {{-- @endforeach--}}
-                {{--
-            </ul>
-            --}}
-                {{--
-            </section>
-            --}}
             </aside>
         </div>
     </section>

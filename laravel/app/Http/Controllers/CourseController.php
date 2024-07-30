@@ -194,7 +194,7 @@ class CourseController extends Controller
 
         $certificated = false;
 
-        if ($allCount * 0.7 <= $trueCount) {
+//        if ($allCount * 0.7 <= $trueCount) {
             $certificated = true;
 
 
@@ -204,7 +204,7 @@ class CourseController extends Controller
                 'correct_count' => $trueCount,
                 'certificated' => $certificated
             ]);
-        }
+//        }
 
 
         if ($certificated) {

@@ -15,7 +15,7 @@
         </div>
         <div class="row">
             <?php $i = 0; ?>
-            <?php $__currentLoopData = $courses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $course): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php $__currentLoopData = $lastSixCourses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $course): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <?php $i++; ?>
                 <?php if($course->course_sections->count() > 0 && $i <= 6): ?>
                     <div class="col-lg-4 col-md-4 col-sm-6 mb-50">

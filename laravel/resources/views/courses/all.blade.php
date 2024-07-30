@@ -55,15 +55,9 @@
                     @endforeach
                 </ul>
             </div>
-            <!--<form action="" method="GET">-->
-            <!--    <div class="search-bar">-->
-            <!--        <input name="search" type="text">-->
-            <!--        <button>{{ __('header.search') }}</button>-->
-            <!--    </div>-->
-            <!--</form>-->
             <div class="tab_body first">
                 <div class="row pt-50">
-                    @foreach($courses as $course)
+                    @foreach($lastSixCourses as $course)
                         @if($course->course_sections->count() > 0)
                             <div class="col-lg-3 col-md-4 col-sm-6 mb-50">
                                 <a href="{{ url('/courses/' . $course->id . '-' . slug($course->title)) }}">

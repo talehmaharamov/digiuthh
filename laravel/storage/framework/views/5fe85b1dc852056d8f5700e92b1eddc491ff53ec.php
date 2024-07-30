@@ -179,7 +179,7 @@ unset($__errorArgs, $__bag); ?>
                 <?php endif; ?>
                 <input class="form-control" type="password" name="password" id="password"
                        placeholder="<?php echo e(__('third.your_password')); ?>">
-                <span class="show-password">
+                <span class="show-password mt-4">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                          stroke-width="2">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
