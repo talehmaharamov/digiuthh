@@ -285,8 +285,12 @@
             <div class="col-lg-12">
                 <div class="certificate_container">
                     <div class="item">
-                        <div class="left_side"><img src="/assets/img/certificate/left-side.png" alt=""></div>
-                        <div class="right_side"><img src="/assets/img/certificate/right-side.png" alt=""></div>
+                        <div class="left_side">
+                            <img src="/assets/img/certificate/left-side.png" alt="">
+                        </div>
+                        <div class="right_side">
+                            <img src="/assets/img/certificate/right-side.png" alt="">
+                        </div>
                         <div class="card_header">
                             <div class="certificate_supported">
                                 <div><img src="/assets/img/certificate/esn.svg" alt=""></div>

@@ -53,15 +53,9 @@
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </ul>
             </div>
-            <!--<form action="" method="GET">-->
-            <!--    <div class="search-bar">-->
-            <!--        <input name="search" type="text">-->
-            <!--        <button><?php echo e(__('header.search')); ?></button>-->
-            <!--    </div>-->
-            <!--</form>-->
             <div class="tab_body first">
                 <div class="row pt-50">
-                    <?php $__currentLoopData = $lastSixCourses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $course): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php $__currentLoopData = $courses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $course): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <?php if($course->course_sections->count() > 0): ?>
                             <div class="col-lg-3 col-md-4 col-sm-6 mb-50">
                                 <a href="<?php echo e(url('/courses/' . $course->id . '-' . slug($course->title))); ?>">
@@ -80,63 +74,6 @@
                                                     <?php echo e($course->user?->name . ' ' . $course->user?->surname); ?>
 
                                                 </div>
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
                                                 <?php if(\Illuminate\Support\Facades\Lang::has('course.course_start')): ?>
                                                     <div class="start-course">
                                                         <?php echo e(__('course.course_start')); ?>

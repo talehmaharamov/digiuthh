@@ -19,8 +19,10 @@ class CourseController extends Controller
             ->where('title', 'like', '%' . $request->input('search') . '%')
             ->orderBy('id', 'desc')
             ->paginate(12);
+//        $ccc = Course::orderBy('id', 'desc')->with(['user', 'course_category', 'course_reviews', 'course_comments', 'course_sections.course_episodes'])->withCount('course_reviews')->get();
+//        $lastSixCourses = $ccc->slice(-6);
 
-        return view('courses.all', compact('courses'));
+        return view('courses.all', get_defined_vars());
     }
 
     public function myCourses(Request $request)

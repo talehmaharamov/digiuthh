@@ -94,6 +94,7 @@ return [
     'exam_submit' => 'Təsdiq et',
     'save' => 'Yadda saxla',
     'verify_success_message' => 'E-poçtunuza təsdiq məktubu göndərildi. Zəhmət olmasa, e-poçtunuza daxil olaraq hesabınızı təsdiq edin.',
-    'error' => 'Xəta'
+    'error' => 'Xəta',
+    'mail_mentor_send_successfully' => 'İsmarıcınız mentora göndərildi. Sizinlə tezliklə əlaqə saxlanılacaq'
 
 ];

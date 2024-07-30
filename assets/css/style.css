@@ -5016,9 +5016,10 @@ section:hover .section-title h2::before {
 
 .bsingle__post-thumb img {
     width: 100%;
+    height: 232px;
     max-height: 350px;
     -o-object-fit: cover;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 /* .bsingle__post .video-p {

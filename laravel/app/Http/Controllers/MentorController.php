@@ -110,7 +110,7 @@ class MentorController extends Controller
                 $message->to($request->mentorMail);
                 $message->subject('Yeni mesajınız var!');
             });
-            return redirect()->to('/')->with('success', __('third.mail_send_successfully'));
+            return redirect()->to('/')->with('success', __('third.mail_mentor_send_successfully'));
         }
     }
 }
