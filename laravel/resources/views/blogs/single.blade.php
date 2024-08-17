@@ -65,7 +65,7 @@
                             <div class="col-md-6">
                                 <div class="related-post-wrap mb-30">
                                     <div class="post-thumb">
-                                        <img src="{{ asset('laravel/public/uploads/' . $blog->image) }}" alt="">
+                                        <img src="{{ asset('laravel/public/uploads/' . $blog->image) }}"  alt="">
                                     </div>
                                     <div class="rp__content">
                                         <h3>

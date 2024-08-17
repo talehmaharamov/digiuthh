@@ -6,13 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
-class CourseCategory extends Model
+class MentorCategory extends Model
 {
     use HasFactory, HasTranslations;
 
     public array $translatable = ['title'];
-    public function course()
+
+    public function mentor()
     {
-        return $this->belongsTo(Course::class,'id','course_category_id');
+        return $this->belongsTo(User::class, 'id', 'mentor_category_id')->where('status', 'mentor');
     }
 }

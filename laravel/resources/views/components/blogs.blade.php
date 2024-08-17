@@ -57,6 +57,11 @@
                     </a>
                 </div>
             @endforeach
+                @if(count($blogs) >= 3)
+                    <div class=" mb-5 col-lg-12 col-md-12 d-flex justify-content-center">
+                        <a class="btn btn-success" href="/blogs">{{__('third.more')}}</a>
+                    </div>
+                @endif
         </div>
     </div>
 </section>

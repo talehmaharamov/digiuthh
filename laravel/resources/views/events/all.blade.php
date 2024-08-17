@@ -43,14 +43,21 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-title center-align text-center mb-70">
-                    @if(\Illuminate\Support\Facades\Lang::has('third.our_events'))
-                    <h5>{{ __('third.our_events') }}</h5>
+                    @if(count($events) > 0)
+                        @if(\Illuminate\Support\Facades\Lang::has('third.our_events'))
+                            <h5>{{ __('third.our_events') }}</h5>
+                        @endif
+                        @if(\Illuminate\Support\Facades\Lang::has('third.upcoming_events'))
+                            <h2>
+                                {{ __('third.upcoming_events') }}
+                            </h2>
+                        @endif
+                    @else
+                        <h2>
+                            {{ __('third.no-have-event') }}
+                        </h2>
                     @endif
-                    @if(\Illuminate\Support\Facades\Lang::has('third.upcoming_events'))
-                    <h2>
-                        {{ __('third.upcoming_events') }}
-                    </h2>
-                    @endif
+
                 </div>
             </div>
         </div>

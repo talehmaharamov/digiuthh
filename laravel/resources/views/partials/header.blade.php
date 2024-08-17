@@ -128,7 +128,7 @@
                             <ul>
                                 <li>
                                     <a href="#" class="menu-tigger">
-                                        <i class="fas fa-search"></i>
+{{--                                        <i class="fas fa-search"></i>--}}
                                     </a>
                                 </li>
                                 <li>

@@ -83,13 +83,19 @@
                             @endif
                             <div class="team-social">
                                 @if($team->facebook_link)
-                                    <a href="{{ $team->facebook_link }}"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="{{ $team->facebook_link }}" class="iconFb">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
                                 @endif
                                 @if($team->instagram_link)
-                                    <a href="{{ $team->instagram_link }}"><i class="fab fa-instagram"></i></a>
+                                    <a href="{{ $team->instagram_link }}" class="iconIg">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
                                 @endif
                                 @if($team->linkedin_link)
-                                    <a href="{{ $team->linkedin_link }}"><i class="fab fa-linkedin"></i></a>
+                                    <a href="{{ $team->linkedin_link }}" class="iconLk">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
                                 @endif
                             </div>
                         </div>

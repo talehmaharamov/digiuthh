@@ -10,7 +10,7 @@
             </a>
         </div>
     </div>
-    <form action="/courses" role="search" method="get" id="searchList" class="searchform">
+    <form action="/search" role="search" method="get" id="searchList" class="searchform">
         <input type="text" name="search" id="input-search" value="" placeholder="{{ __('header.search') }}"
                autocomplete="off"/>
     </form>

@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('title', __('header.blogs') . ' -')
 
 @section('content')
@@ -35,13 +34,12 @@
             </div>
         </div>
     </section>
-    <section class="inner-blog pt-120 pb-120">
+    <section class="inner-blog pt-30 pb-30">
         <div class="container">
             <div class="row">
                 @foreach($blogs as $blog)
                     <div class="col-lg-4">
-
-                        <div class="bsingle__post mb-50" style="margin-top: -80px;">
+                        <div class="bsingle__post mb-50" style="margin-top: 0px;">
                             <a href="{{ url('/blogs/' . $blog->id . '-' . slug($blog->title)) }}">
                                 <div class="bsingle__post-thumb">
                                     <img src="{{ asset('laravel/public/uploads/' . $blog->image) }}"
@@ -52,7 +50,7 @@
                                         <a><i class="far fa-user"></i> {{ ($blog->user->name ?? '') .' ' . ($blog->user->surname ?? '') }}
                                         </a>
                                     </div>
-                                    <h4>
+                                    <h4 class="fixed-title-height">
                                         <a href="{{ url('/blogs/' . $blog->id . '-' . slug($blog->title)) }}">
                                             {{$blog->title}}
                                         </a>
@@ -65,21 +63,21 @@
 
                                     @php
                                         $category = $blog->blog_category;
-
                                     @endphp
 
                                     <div class="meta-info" style="margin-top: 15px;">
                                         <ul style="display: flex; justify-content: center;">
                                             @if(\Illuminate\Support\Facades\Lang::has('header.category'))
-                                                <li class="breadcrumb-item breadcrumb-category"><a href="/"
-                                                                                                   style="color: inherit;">{{
-                                            __('header.category') }}</a>
+                                                <li class="breadcrumb-item breadcrumb-category">
+                                                    <a href="/" style="color: inherit;">
+                                                        {{__('header.category') }}
+                                                    </a>
                                                 </li>
                                             @endif
                                             <li class="cat-item cat-item-16">
                                                 <a style="color: inherit !important;"
                                                    href="{{ url('/blogs/category/' . $category->id . '-' . slug($category->title)) }}">{{
-                                                    $category->title }}
+                                    $category->title }}
                                                 </a>
                                             </li>
                                         </ul>
@@ -94,8 +92,6 @@
                                 </div>
                             </a>
                         </div>
-
-
                     </div>
                 @endforeach
 
