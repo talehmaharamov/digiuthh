@@ -95,6 +95,8 @@ return [
     'save' => 'Yadda saxla',
     'verify_success_message' => 'E-poçtunuza təsdiq məktubu göndərildi. Zəhmət olmasa, e-poçtunuza daxil olaraq hesabınızı təsdiq edin.',
     'error' => 'Xəta',
-    'mail_mentor_send_successfully' => 'İsmarıcınız mentora göndərildi. Sizinlə tezliklə əlaqə saxlanılacaq'
+    'mail_mentor_send_successfully' => 'İsmarıcınız mentora göndərildi. Sizinlə tezliklə əlaqə saxlanılacaq',
+    'no-have-event' => 'Hal-hazırda planlaşdırılan tədbir yoxdur.',
+    'speciality' => 'İxtisasınız',
 
 ];

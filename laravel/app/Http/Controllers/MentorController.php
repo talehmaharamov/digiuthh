@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MentorCategory;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -13,7 +14,8 @@ class MentorController extends Controller
 {
     public function index()
     {
-        return view('mentor');
+        $mentorCategories = MentorCategory::all();
+        return view('mentor', compact('mentorCategories'));
     }
 
     public function register(Request $request)
@@ -58,8 +60,11 @@ class MentorController extends Controller
                 'email' => $request->email,
                 'phone' => $request->phone,
                 'username' => $request->username,
-                'fullname_az' => $request->fullname['az'],
-                'fullname_en' => $request->fullname['en'],
+                'fullname_az' => $request->fullname['az'] ?? '',
+                'fullname_en' => $request->fullname['en'] ?? '',
+                'speciality_az' => $request->speciality['az'] ?? '',
+                'speciality_en' => $request->speciality['en'] ?? '',
+                'mentor_category_id' => $request->mentorCategory,
                 'bio_az' => $request->content1['az'],
                 'bio_en' => $request->content1['en'],
                 'linkedin_link' => $request->linkedin_link,

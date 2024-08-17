@@ -118,6 +118,7 @@ return [
     'save' => 'Save',
     'verify_success_message' => 'A confirmation email has been sent to your email. Please verify your account by entering your email.',
     'error' => 'Error',
-    'mail_mentor_send_successfully' => 'Your message has been sent to the mentor. You will be contacted shortly'
-
+    'mail_mentor_send_successfully' => 'Your message has been sent to the mentor. You will be contacted shortly',
+    'no-have-event' => 'There are currently no scheduled events.',
+    'speciality' => 'Speciality',
 ];

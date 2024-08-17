@@ -118,17 +118,17 @@
                                     </span>
                                     <div class="team-social mt-20">
                                         @if($trainer->facebook_link)
-                                            <a href="{{ $trainer->facebook_link }}" style="background: #345aa8;">
+                                            <a href="{{ $trainer->facebook_link }}" class="iconFb">
                                                 <i class="fab fa-facebook-f"></i>
                                             </a>
                                         @endif
                                         @if($trainer->instagram_link)
-                                            <a class="bg-danger" href="{{ $trainer->instagram_link }}" style="background: #CD201F;">
+                                            <a href="{{ $trainer->instagram_link }}" class="iconIg">
                                                 <i class="fab fa-instagram"></i>
                                             </a>
                                         @endif
                                         @if($trainer->linkedin_link)
-                                            <a href="{{ $trainer->linkedin_link }}" style="background: #0057FF;">
+                                            <a href="{{ $trainer->linkedin_link }}" class="iconLk">
                                                 <i class="fab fa-linkedin"></i>
                                             </a>
                                         @endif
@@ -182,21 +182,24 @@
                                         </a>
                                     </h4>
                                     <span>
-                                        {{ __('third.'.$mentor->position) }}
+{{--                                        {{ __('third.'.$mentor->position) }}--}}
+                                        {{ $mentor->{'speciality_' . app()->getLocale()} }}
                                     </span>
                                     <div class="team-social mt-20">
                                         @if($mentor->facebook_link)
-                                            <a href="{{ $mentor->facebook_link }}">
+                                            <a href="{{ $mentor->facebook_link }}" class="iconFb">
                                                 <i class="fab fa-facebook-f"></i>
                                             </a>
                                         @endif
                                         @if($mentor->instagram_link)
-                                            <a class="bg-danger" href="{{ $mentor->instagram_link }}">
+                                            <a class="iconIg" href="{{ $mentor->instagram_link }}">
                                                 <i class="fab fa-instagram"></i>
                                             </a>
                                         @endif
                                         @if($mentor->linkedin_link)
-                                            <a href="{{ $mentor->linkedin_link }}"><i class="fab fa-linkedin"></i></a>
+                                            <a href="{{ $mentor->linkedin_link }}" class="iconLk">
+                                                <i class="fab fa-linkedin"></i>
+                                            </a>
                                         @endif
                                     </div>
                                 </div>

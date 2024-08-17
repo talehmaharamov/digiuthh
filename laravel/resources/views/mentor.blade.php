@@ -1,12 +1,9 @@
 @extends('layouts.app')
-
 @section('title', __('third.register_as_mentor'))
-
 @section('content')
     <section class="form-section">
         <form action="{{route('register.mentor')}}" method="post" class="digiuth_form" id="teacher-register"
               enctype="multipart/form-data">
-
             @csrf
             @if(\Illuminate\Support\Facades\Lang::has('third.signup'))
                 <div class="title">
@@ -17,7 +14,6 @@
                         </small>
                     </div>
                 </div>
-
             @endif
 
             <div class="form-group">
@@ -45,6 +41,55 @@
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
+
+            <div class="form-group">
+                <label for="speciality">
+                    {{ __('third.speciality'). ' (AZ)' }}
+                    <span>*</span>
+                </label>
+                <input class="form-control" placeholder="{{__('third.speciality')}}"
+                       type="text"
+                       id="speciality" maxlength="50" name="speciality[az]" value="{{ old('speciality.az') }}">
+                @error('speciality.az')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="speciality">
+                    {{ __('third.speciality'). ' (EN)' }}
+                    <span>*</span>
+                </label>
+                <input class="form-control" placeholder="{{__('third.speciality')}}"
+                       type="text"
+                       id="speciality" maxlength="50" name="speciality[en]" value="{{ old('speciality.en') }}">
+                @error('speciality.en')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
+
+            <div class="form-group">
+                @if(\Illuminate\Support\Facades\Lang::has('third.categories'))
+                    <label for="email">
+                        {{ __('third.mentor') }} {{ __('third.categories') }}
+                        <span>*</span>
+                    </label>
+                @endif
+                <select class="form-control mb-4" name="mentorCategory" id="mentorCategory">
+                    @foreach($mentorCategories as $mCat)
+                        <option value="{{ $mCat->id }}">
+                            {{ $mCat->title }}
+                        </option>
+                    @endforeach
+                </select>
+                <input class="form-control" type="text" name="email" id="email" placeholder="{{__('third.your_email')}}"
+                       value="{{old('email')}}">
+            </div>
+            @error('email')
+            <br>
+            <div class="alert alert-danger">{{$message}}</div>
+            @enderror
 
             <div class="form-group">
                 @if(\Illuminate\Support\Facades\Lang::has('third.email'))

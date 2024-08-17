@@ -49,7 +49,7 @@
                     @if(\Illuminate\Support\Facades\Lang::has('third.all'))
                         <li class="all_tab_items active">{{ __('third.all') }}</li>
                     @endif
-                    @foreach(\App\Models\CourseCategory::all() as $c)
+                    @foreach(\App\Models\CourseCategory::whereHas('course')->get() as $c)
                         <li class="tab_item @if(isset($category) && $c->id == $category->id) active @endif"
                             data-id="{{ $c->id }}">{{ $c->title }}</li>
                     @endforeach

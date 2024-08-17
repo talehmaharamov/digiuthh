@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UpdateController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TeacherController;
@@ -24,6 +25,9 @@ Route::get('/about', \App\Http\Controllers\AboutController::class);
 Route::get('/team/{id}-{slug}', \App\Http\Controllers\TeamController::class);
 
 Route::get('/courses', [\App\Http\Controllers\CourseController::class, 'all_courses']);
+
+Route::get('/search', [\App\Http\Controllers\CourseController::class, 'search']);
+
 
 Route::get('/blogs', [\App\Http\Controllers\BlogController::class, 'all_blogs']);
 Route::get('/blogs/category/{id}-{slug}', [\App\Http\Controllers\BlogController::class, 'category']);
@@ -145,6 +149,11 @@ Route::post('/ajax/courses', function (Request $request) {
     return view('master.course', ['courses' => $courses->whereHas('course_users', function ($query) {
         return $query->where('user_id', auth()->user()->id);
     })->get()]);
+});
+
+Route::post('/ajax/mentors', function (Request $request) {
+    $mentors = \App\Models\User::where('status', 'mentor')->whereIn('mentor_category_id', $request->ids)->where('is_active', 1);
+    return view('master.mentor', ['mentors' => $mentors->get()]);
 });
 
 

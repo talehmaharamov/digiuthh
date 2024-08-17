@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use App\Models\Course;
 use App\Models\CourseComment;
 use App\Models\CourseEpisode;
 use App\Models\CourseReview;
 use App\Models\CourseSection;
+use App\Models\Event;
+use App\Models\User as UserModel;
 use App\Models\UserExam;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CourseController extends Controller
 {
@@ -19,9 +24,9 @@ class CourseController extends Controller
             ->where('title', 'like', '%' . $request->input('search') . '%')
             ->orderBy('id', 'desc')
             ->paginate(12);
+
 //        $ccc = Course::orderBy('id', 'desc')->with(['user', 'course_category', 'course_reviews', 'course_comments', 'course_sections.course_episodes'])->withCount('course_reviews')->get();
 //        $lastSixCourses = $ccc->slice(-6);
-
         return view('courses.all', get_defined_vars());
     }
 
@@ -135,7 +140,7 @@ class CourseController extends Controller
     public function category($id, $slug)
     {
 
-        $category = \App\Models\CourseCategory::findOrFail($id);
+//        $category = \App\Models\CourseCategory::findOrFail($id);
 
         $courses = Course::with(['user', 'course_category', 'course_reviews', 'course_comments', 'course_sections.course_episodes'])
             ->withCount('course_reviews')
@@ -197,15 +202,15 @@ class CourseController extends Controller
         $certificated = false;
 
 //        if ($allCount * 0.7 <= $trueCount) {
-            $certificated = true;
+        $certificated = true;
 
 
-            $sertificate = \App\Models\UserExam::create([
-                'user_id' => $user->id,
-                'course_id' => $id,
-                'correct_count' => $trueCount,
-                'certificated' => $certificated
-            ]);
+        $sertificate = \App\Models\UserExam::create([
+            'user_id' => $user->id,
+            'course_id' => $id,
+            'correct_count' => $trueCount,
+            'certificated' => $certificated
+        ]);
 //        }
 
 
@@ -216,4 +221,71 @@ class CourseController extends Controller
         return redirect()->to('/courses/' . $id . '-' . \Str::slug($course->title))->with($certificated ? 'success' : 'error', $certificated ? __('third.certificate_added') : __('third.certificate_not_added'));
     }
 
+    public function search(Request $request)
+    {
+        $keyword = $request->search;
+
+        $mentors = UserModel::where('status', 'mentor')
+            ->where(function ($query) use ($keyword) {
+                $query->where('fullname_az', 'like', '%' . $keyword . '%')
+                    ->orWhere('fullname_en', 'like', '%' . $keyword . '%')
+                    ->orWhere('fullname', 'like', '%' . $keyword . '%')
+                    ->orWhere('speciality_az', 'like', '%' . $keyword . '%')
+                    ->orWhere('speciality_en', 'like', '%' . $keyword . '%')
+                    ->orWhere('content', 'like', '%' . $keyword . '%');
+            })
+            ->where('is_active',1)
+            ->orderBy('id', 'desc')
+            ->get();
+
+        $courses = collect();
+        $blogs = collect();
+        $events = collect();
+        $trainers = collect();
+
+        if (url()->previous() != url('/mentors')) {
+            $trainers = UserModel::where('status', 'teacher')
+                ->where(function ($query) use ($keyword) {
+                    $query->where('fullname_az', 'like', '%' . $keyword . '%')
+                        ->orWhere('fullname_en', 'like', '%' . $keyword . '%')
+                        ->orWhere('fullname', 'like', '%' . $keyword . '%')
+                        ->orWhere('speciality_az', 'like', '%' . $keyword . '%')
+                        ->orWhere('speciality_en', 'like', '%' . $keyword . '%')
+                        ->orWhere('content', 'like', '%' . $keyword . '%');
+                })
+                ->where('is_active',1)
+                ->orderBy('id', 'desc')
+                ->get();
+
+            $courses = Course::where(function ($query) use ($keyword) {
+                $query->where('title', 'like', '%' . $keyword . '%')
+                    ->orWhere('content', 'like', '%' . $keyword . '%')
+                    ->orWhere('about', 'like', '%' . $keyword . '%')
+                    ->orWhere('tags', 'like', '%' . $keyword . '%');
+            })
+                ->orderBy('id', 'desc')
+                ->get();
+
+            $blogs = Blog::where(function ($query) use ($keyword) {
+                $query->where('title', 'like', '%' . $keyword . '%')
+                    ->orWhere('content', 'like', '%' . $keyword . '%')
+                    ->orWhere('content_az', 'like', '%' . $keyword . '%')
+                    ->orWhere('tags', 'like', '%' . $keyword . '%');
+            })
+                ->orderBy('id', 'desc')
+                ->get();
+
+            // Query for events
+            $events = Event::where(function ($query) use ($keyword) {
+                $query->where('title', 'like', '%' . $keyword . '%')
+                    ->orWhere('content', 'like', '%' . $keyword . '%')
+                    ->orWhere('organizer', 'like', '%' . $keyword . '%')
+                    ->orWhere('place', 'like', '%' . $keyword . '%');
+            })
+                ->where('start_date', '>', Carbon::today())
+                ->orderBy('id', 'desc')
+                ->get();
+        }
+        return view('search', compact('keyword', 'mentors', 'courses', 'blogs', 'trainers', 'events','trainers'));
+    }
 }

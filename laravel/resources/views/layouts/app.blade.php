@@ -52,14 +52,10 @@
                 </div>
                 <div class="row search-outer">
                     <div class="col-md-11">
-                        <input type="text" placeholder="
-                        @if(\Illuminate\Support\Facades\Lang::has('header.search'))
-                        {{ __('header.search') }}
-                        @else
-                        @endif"/>
+                        <input type="text" id="searchInput" placeholder="{{ __('header.search') }}"/>
                     </div>
                     <div class="col-md-1 text-right">
-                        <a href="#">
+                        <a href="javascript:void(0);" id="searchButton">
                             <i class="fa fa-search" aria-hidden="true"></i>
                         </a>
                     </div>
@@ -81,6 +77,14 @@
 <script src="{{ asset('/assets/js/player-init.js') }}"></script>
 <script src="{{ asset('/assets/js/main.js') }}"></script>
 <script src="{{ asset('/assets/js/timeCount.js') }}"></script>
+<script>
+    document.getElementById('searchButton').addEventListener('click', function() {
+        var searchQuery = document.getElementById('searchInput').value;
+        if(searchQuery) {
+            window.location.href = '/search?search=' + encodeURIComponent(searchQuery);
+        }
+    });
+</script>
 @yield('js')
 
 @if(session()->has('success'))
